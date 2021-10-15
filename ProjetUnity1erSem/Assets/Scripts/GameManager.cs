@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI textScore;
     private static GameManager cela;
 
     public static GameManager Singleton
@@ -24,5 +26,6 @@ public class GameManager : MonoBehaviour
     public void AjouterScore(Scarabe.Fatigue nivoFatigue)
     {
         scoreDistance += metreParSec * (int)nivoFatigue * Time.deltaTime;
+        textScore.text = ScoreDistance + " m";
     }
 }

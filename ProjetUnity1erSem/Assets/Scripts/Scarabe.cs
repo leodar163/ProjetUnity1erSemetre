@@ -16,6 +16,9 @@ public class Scarabe : MonoBehaviour
     [Tooltip("En seconde")]
     [SerializeField] private float tmpsFatigue ;
 
+    [SerializeField] private float vitesseRotationRoue;
+    [SerializeField] private Transform roue;
+    
     private IEnumerator coolDownFatigue;
     
     private bool peutManger = true;
@@ -32,6 +35,7 @@ public class Scarabe : MonoBehaviour
     private void Update()
     {
            Courir();
+           FaireRoulerRoue();
     }
 
     private void Courir()
@@ -60,5 +64,12 @@ public class Scarabe : MonoBehaviour
             coolDownFatigue = CoolDownFatigue();
             StartCoroutine(coolDownFatigue);
         }
+    }
+
+    private void FaireRoulerRoue()
+    {
+        roue.localEulerAngles = new Vector3(roue.localEulerAngles.x, roue.localEulerAngles.y,
+            roue.localEulerAngles.z - vitesseRotationRoue * Time.deltaTime * (int) nivoFatigue);
+        Paralaxe.Singleton.VitesseDefilement = (int) nivoFatigue;
     }
 }
