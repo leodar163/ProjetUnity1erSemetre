@@ -6,17 +6,21 @@ public class Fourmi : MonoBehaviour
 {
     public Rigidbody2D rb;
     [SerializeField] private Transform pied;
+    [SerializeField] private Transform origineDroite;
+    [SerializeField] private Transform origineGauche;
 
 
-    [SerializeField] private KeyCode droite;
-    [SerializeField] private KeyCode gauche;
-    [SerializeField] private KeyCode saut;
+    [SerializeField] private KeyCode toucheDroite;
+    [SerializeField] private KeyCode toucheGauche;
+    [SerializeField] private KeyCode toucheSaut;
 
     [SerializeField] private float forceSaut = 50;
     [SerializeField] private float vitesse = 1.5f;
     [SerializeField] private float distance = 1.5f;
-
+    
     [SerializeField] private bool auSol;
+    [SerializeField] private bool auMur;
+    [SerializeField] private bool enMouvement;
 
     [SerializeField] private LayerMask DetectionSol;
 
@@ -32,37 +36,49 @@ public class Fourmi : MonoBehaviour
         MouvementLateral();
         MouvementSaut();
         DetectSol();
+        DetectMur();
 
     }
 
     void MouvementLateral()
     {
-        if (Input.GetKey(droite))
+        enMouvement = false;
+            
+        if (Input.GetKey(toucheDroite))
         {
-            rb.velocity = new Vector2(vitesse, rb.velocity.y);
+            if(!auMur)
+            {
+                rb.velocity = new Vector2(vitesse, rb.velocity.y);
+                enMouvement = true;
+            }
+           
         }
-        /*else
-        {
-            vitesse = 0;
-        }*/
 
-        if (Input.GetKey(gauche))
+        if (Input.GetKey(toucheGauche))
         {
-            rb.velocity = new Vector2(-vitesse, rb.velocity.y);
+            if (!auMur)
+            {
+                rb.velocity = new Vector2(-vitesse, rb.velocity.y);
+                enMouvement = true;
+            }
+            
         }
-        /*else
+
+       if (!enMouvement & auSol)
         {
-            vitesse = 0;
-        }*/
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
+       
     }
 
     void MouvementSaut()
     {
-        if (Input.GetKeyDown(saut))
+        if (Input.GetKeyDown(toucheSaut))
         {
-            if (auSol == true)
+            if (auSol)
             {
                 rb.AddForce(new Vector2(0, forceSaut));
+                enMouvement = true;
             }
         }
     }
@@ -114,6 +130,29 @@ public class Fourmi : MonoBehaviour
             Debug.DrawRay(origine + decalage, direction * distance, Color.red);
         }
 
+    }
+
+    void DetectMur()
+    {
+        Vector2 origine1 = origineDroite.position;
+       // Vector2 direction1 = Vector2.right;
+       Vector2 direction1 = new Vector2(0,0);
+
+        RaycastHit2D hit3 = Physics2D.Raycast(origine1, direction1, distance, DetectionSol);
+
+        if(hit3)
+        {
+            auMur = true;
+        }
+
+        if (hit3)
+        {
+            Debug.DrawRay(origine1, direction1 * distance, Color.green);
+        }
+        else
+        {
+            Debug.DrawRay(origine1, direction1 * distance, Color.red);
+        }
     }
     
 }
