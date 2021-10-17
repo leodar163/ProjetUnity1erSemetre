@@ -185,6 +185,72 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3231407010280707064, guid: 7c69e2b1fad322745896263e7aa9c711, type: 3}
   m_PrefabInstance: {fileID: 206316034}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &317720302
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1456293931}
+    m_Modifications:
+    - target: {fileID: 3188656046171653268, guid: 7c69e2b1fad322745896263e7aa9c711, type: 3}
+      propertyPath: m_Name
+      value: Plateforme (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3231407010280707064, guid: 7c69e2b1fad322745896263e7aa9c711, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3231407010280707064, guid: 7c69e2b1fad322745896263e7aa9c711, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 7.0286527
+      objectReference: {fileID: 0}
+    - target: {fileID: 3231407010280707064, guid: 7c69e2b1fad322745896263e7aa9c711, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 3231407010280707064, guid: 7c69e2b1fad322745896263e7aa9c711, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 3231407010280707064, guid: 7c69e2b1fad322745896263e7aa9c711, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3231407010280707064, guid: 7c69e2b1fad322745896263e7aa9c711, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3231407010280707064, guid: 7c69e2b1fad322745896263e7aa9c711, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3231407010280707064, guid: 7c69e2b1fad322745896263e7aa9c711, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3231407010280707064, guid: 7c69e2b1fad322745896263e7aa9c711, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3231407010280707064, guid: 7c69e2b1fad322745896263e7aa9c711, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3231407010280707064, guid: 7c69e2b1fad322745896263e7aa9c711, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3231407010280707064, guid: 7c69e2b1fad322745896263e7aa9c711, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7c69e2b1fad322745896263e7aa9c711, type: 3}
+--- !u!4 &317720303 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3231407010280707064, guid: 7c69e2b1fad322745896263e7aa9c711, type: 3}
+  m_PrefabInstance: {fileID: 317720302}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &354198150 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 582424817742740114, guid: a7d8096c06de7004caf4a3844a9f297a, type: 3}
@@ -352,6 +418,7 @@ Transform:
   - {fileID: 516835963}
   - {fileID: 1644020711}
   - {fileID: 1587134158}
+  - {fileID: 317720303}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -467,11 +534,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.4
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 1.54
+  orthographic size: 1.9
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -495,7 +562,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1639459431}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.82, y: 2.45, z: -1.48}
+  m_LocalPosition: {x: 3.53, y: 2.45, z: -1.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

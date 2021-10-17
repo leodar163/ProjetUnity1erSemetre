@@ -131,28 +131,53 @@ public class Fourmi : MonoBehaviour
         }
 
     }
+    // Vector2 direction1 = Vector2.right;
 
     void DetectMur()
     {
+        auMur = false;
+
         Vector2 origine1 = origineDroite.position;
-       // Vector2 direction1 = Vector2.right;
-       Vector2 direction1 = new Vector2(0,0);
+        Vector2 direction1 = new Vector2(0.5f, 0);
+        Vector2 origine2 = origineGauche.position;
+        Vector2 direction2 = new Vector2(-0.5f, 0);
 
         RaycastHit2D hit3 = Physics2D.Raycast(origine1, direction1, distance, DetectionSol);
+        RaycastHit2D hit4 = Physics2D.Raycast(origine2, direction2, distance, DetectionSol);
 
         if(hit3)
         {
             auMur = true;
         }
 
-        if (hit3)
+        if(hit4)
         {
-            Debug.DrawRay(origine1, direction1 * distance, Color.green);
+            auMur = true;
         }
-        else
+
+        if (rb.velocity.x > 0)
         {
-            Debug.DrawRay(origine1, direction1 * distance, Color.red);
+            if (!auMur)
+            {
+                Debug.DrawRay(origine1, direction1 * distance, Color.green);
+            }
+            else
+            {
+                Debug.DrawRay(origine1, direction1 * distance, Color.red);
+            }
+        }
+                        
+        else if (rb.velocity.x < 0)
+        {
+            if(!auMur)
+            {
+                Debug.DrawRay(origine2, direction2 * distance, Color.green);
+            }
+            else
+            {
+                Debug.DrawRay(origine1, direction1 * distance, Color.red);
+            }
         }
     }
-    
+
 }
