@@ -9,20 +9,32 @@ public class Fourmi : MonoBehaviour
     [SerializeField] private Transform origineDroite;
     [SerializeField] private Transform origineGauche;
 
-
     [SerializeField] private KeyCode toucheDroite;
     [SerializeField] private KeyCode toucheGauche;
     [SerializeField] private KeyCode toucheSaut;
+    [SerializeField] private KeyCode toucheAttaque;
+    [SerializeField] private KeyCode toucheInteraction;
 
     [SerializeField] private float forceSaut = 50;
     [SerializeField] private float vitesse = 1.5f;
     [SerializeField] private float distance = 1.5f;
-    
+    [SerializeField] private float distanceAttaque = 1;
+
     [SerializeField] private bool auSol;
     [SerializeField] private bool auMur;
     [SerializeField] private bool enMouvement;
+    [SerializeField] private bool aPortee;
 
     [SerializeField] private LayerMask DetectionSol;
+    [SerializeField] private LayerMask maskCoxi;
+
+    private int direction = 1;
+
+    /*private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(origineDroite.position, origineDroite.position + Vector3.right * distanceAttaque);
+    }*/
 
     // Start is called before the first frame update
     void Start()
@@ -38,8 +50,17 @@ public class Fourmi : MonoBehaviour
         DetectSol();
         DetectMur();
 
+        if (Input.GetKeyDown(toucheAttaque))
+        {
+            Attaque();
+        }
+
     }
 
+    #region Mouvement
+    // Là elle bouge
+    #region Lateral
+    //Les mouvements Droite Gauche
     void MouvementLateral()
     {
         enMouvement = false;
@@ -71,6 +92,55 @@ public class Fourmi : MonoBehaviour
        
     }
 
+    void DetectMur()
+    {
+        auMur = false;
+
+        Vector2 origine1 = origineDroite.position;
+        Vector2 direction1 = new Vector2(0.5f, 0);
+        Vector2 origine2 = origineGauche.position;
+        Vector2 direction2 = new Vector2(-0.5f, 0);
+
+        RaycastHit2D hit3 = Physics2D.Raycast(origine1, direction1, distance, DetectionSol);
+        RaycastHit2D hit4 = Physics2D.Raycast(origine2, direction2, distance, DetectionSol);
+
+        if (hit3 && Input.GetKey(toucheDroite))
+        {
+            auMur = true;
+        }
+
+        if (hit4 && Input.GetKey(toucheGauche))
+        {
+            auMur = true;
+        }
+
+        if (rb.velocity.x > 0)
+        {
+            if (!auMur)
+            {
+                Debug.DrawRay(origine1, direction1 * distance, Color.green);
+            }
+            else
+            {
+                Debug.DrawRay(origine1, direction1 * distance, Color.red);
+            }
+        }
+
+        else if (rb.velocity.x < 0)
+        {
+            if (!auMur)
+            {
+                Debug.DrawRay(origine2, direction2 * distance, Color.green);
+            }
+            else
+            {
+                Debug.DrawRay(origine1, direction1 * distance, Color.red);
+            }
+        }
+    }
+    #endregion Lateral
+    #region Saut
+    // Les sauts
     void MouvementSaut()
     {
         if (Input.GetKeyDown(toucheSaut))
@@ -132,52 +202,37 @@ public class Fourmi : MonoBehaviour
 
     }
     // Vector2 direction1 = Vector2.right;
+    #endregion Saut
+    #endregion Mouvement
+    #region Interaction
+    // Là elle agit
+    #region Lait
+    // Pour stocker et redonne le lait
 
-    void DetectMur()
+    #endregion Lait
+
+    #region Attaque
+    // La fourmi contre-attaque!
+
+    void Attaque()
     {
-        auMur = false;
 
+        //Vector2 devant = new Vector2(origineDroite.position.x - transform.position.x, 0).normalized;
         Vector2 origine1 = origineDroite.position;
-        Vector2 direction1 = new Vector2(0.5f, 0);
-        Vector2 origine2 = origineGauche.position;
-        Vector2 direction2 = new Vector2(-0.5f, 0);
 
-        RaycastHit2D hit3 = Physics2D.Raycast(origine1, direction1, distance, DetectionSol);
-        RaycastHit2D hit4 = Physics2D.Raycast(origine2, direction2, distance, DetectionSol);
 
-        if(hit3)
+        Debug.DrawRay(origine1, Vector2.right * direction * distanceAttaque, Color.yellow, 1.5f);
+        RaycastHit2D hitCoxi = Physics2D.Raycast(origine1, Vector2.right * direction, distanceAttaque, maskCoxi);
+        if (hitCoxi.collider)
         {
-            auMur = true;
-        }
-
-        if(hit4)
-        {
-            auMur = true;
-        }
-
-        if (rb.velocity.x > 0)
-        {
-            if (!auMur)
-            {
-                Debug.DrawRay(origine1, direction1 * distance, Color.green);
-            }
-            else
-            {
-                Debug.DrawRay(origine1, direction1 * distance, Color.red);
-            }
-        }
-                        
-        else if (rb.velocity.x < 0)
-        {
-            if(!auMur)
-            {
-                Debug.DrawRay(origine2, direction2 * distance, Color.green);
-            }
-            else
-            {
-                Debug.DrawRay(origine1, direction1 * distance, Color.red);
+            if (hitCoxi.collider.TryGetComponent(out Coxinelle coxinelle))
+            { 
+                 Destroy(coxinelle.gameObject);
+                
             }
         }
     }
 
+    #endregion Attaque
+    #endregion Interaction
 }

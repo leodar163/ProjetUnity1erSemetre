@@ -169,7 +169,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &1659315757771321938
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -205,15 +205,22 @@ MonoBehaviour:
   toucheDroite: 100
   toucheGauche: 113
   toucheSaut: 32
+  toucheAttaque: 8
+  toucheInteraction: 101
   forceSaut: 200
-  vitesse: 0.5
+  vitesse: 2
   distance: 0.12
+  distanceAttaque: 0.2
   auSol: 0
   auMur: 0
   enMouvement: 0
+  aPortee: 0
   DetectionSol:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
+  maskCoxi:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &3004788347298947584
 GameObject:
   m_ObjectHideFlags: 0
