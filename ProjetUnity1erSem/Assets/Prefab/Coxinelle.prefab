@@ -166,6 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vitesse: 2
-  distanceAttaque: 1
+  distanceAttaque: 0.05
   tmpsPrTuerPuceron: 3
   rb: {fileID: 1634060570627035065}
+  sprRend: {fileID: 1634060569969609754}

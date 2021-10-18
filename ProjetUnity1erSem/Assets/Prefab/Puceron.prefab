@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4354533910540585534
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6952256577490478758}
+  m_Layer: 8
+  m_Name: PtAttaqueDroite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6952256577490478758
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4354533910540585534}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8330897538426688933}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5597972157443299266
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,6 +209,36 @@ PolygonCollider2D:
       - {x: 0.09375, y: -0.49609375}
       - {x: 0.14453125, y: -0.484375}
       - {x: 0.19921875, y: -0.46875}
+--- !u!1 &7857555578741402757
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1876554768722814437}
+  m_Layer: 8
+  m_Name: PtAttaqueGauche
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1876554768722814437
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7857555578741402757}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8330897538426688933}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8330897538426688932
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,6 +269,8 @@ Transform:
   m_Children:
   - {fileID: 8330897539822201708}
   - {fileID: 1331685130723784929}
+  - {fileID: 6952256577490478758}
+  - {fileID: 1876554768722814437}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -224,6 +286,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d84e8f75fbdde0544ab7edc70413cf08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ptAttaqueDroite: {fileID: 6952256577490478758}
+  ptAttaqueGauche: {fileID: 1876554768722814437}
   cul: {fileID: 1331685130723784929}
   sprRend: {fileID: 2218985391404480410}
   couleurLaitbuvable:
@@ -234,6 +298,7 @@ MonoBehaviour:
     rgba: 4290633181
   tempsSecretionLait: 3
   goutteBuvable: 0
+  estAttaque: 0
 --- !u!1 &8330897539822201707
 GameObject:
   m_ObjectHideFlags: 0

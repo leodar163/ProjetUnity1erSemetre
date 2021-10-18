@@ -1,10 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class Puceron : MonoBehaviour
 {
+    [Header("Parties du corps")] 
+    [SerializeField] private Transform ptAttaqueDroite;
+    [SerializeField] private Transform ptAttaqueGauche;
     [SerializeField] private Transform cul;
     [SerializeField] private SpriteRenderer sprRend;
     [Header("Couleurs")]
@@ -54,5 +58,12 @@ public class Puceron : MonoBehaviour
     {
         ListePucerons.Singleton.RetirerPuceron(this);
         Destroy(gameObject);
+    }
+    
+    public Vector2 RecupPointAttaquePlusProche(Vector2 position)
+    {
+        return Vector2.Distance(position, ptAttaqueDroite.position) > 
+               Vector2.Distance(position, ptAttaqueGauche.position) ? 
+            ptAttaqueGauche.position : ptAttaqueDroite.position;
     }
 }
