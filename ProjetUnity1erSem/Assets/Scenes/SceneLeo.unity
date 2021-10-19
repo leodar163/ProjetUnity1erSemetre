@@ -515,7 +515,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 1.78
+  orthographic size: 2
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -594,6 +594,8 @@ MonoBehaviour:
   vitesseMax: 100
   decalageVertical: 0.25
   decalageHorizontal: 0
+  camera: {fileID: 488028899}
+  dezoom: 2
   fileRendu: 1
 --- !u!1001 &516859111
 PrefabInstance:
