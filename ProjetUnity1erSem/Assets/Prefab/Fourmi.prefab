@@ -80,7 +80,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -207,7 +207,7 @@ MonoBehaviour:
   toucheSaut: 32
   toucheAttaque: 8
   toucheInteraction: 101
-  forceSaut: 200
+  forceSaut: 230
   vitesse: 2
   distance: 0.12
   distanceAttaque: 0.2
@@ -217,7 +217,7 @@ MonoBehaviour:
   aPortee: 0
   DetectionSol:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 576
   maskCoxi:
     serializedVersion: 2
     m_Bits: 128
