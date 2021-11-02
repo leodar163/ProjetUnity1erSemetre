@@ -91,7 +91,7 @@ public class CameraMan : MonoBehaviour
 
     private void SuivreObjetASuivre()
     {
-        Vector3 nvllePos = transform.position;
+        var position = transform.position;
         Vector3 posAAttendre = objetASuivre.transform.position;
         posAAttendre.x += decalageHorizontal;
         posAAttendre.y += decalageVertical;
@@ -100,23 +100,33 @@ public class CameraMan : MonoBehaviour
 
         float diffTmps = fileRendu == FileRendu.Update ? Time.deltaTime : Time.fixedDeltaTime;
         
-        nvllePos = Vector2.SmoothDamp(transform.position,posAAttendre,ref velocite
-        ,tmpsPrAttendreObjet, vitesseMax, diffTmps );
+        Vector3 nvllePos = Vector2.SmoothDamp(position,posAAttendre,ref velocite
+            ,tmpsPrAttendreObjet, vitesseMax, diffTmps );
 
-        nvllePos.z = transform.position.z;
-        transform.position = nvllePos;
+        nvllePos.z = position.z;
+        position = nvllePos;
+        transform.position = position;
     }
 
+    public bool EstDansCamera(Vector3 position)
+    {
+        Vector2 pos = camera.WorldToScreenPoint(position);
+        return !(pos.x < 0 || pos.y > 0 ||
+                 pos.x > camera.scaledPixelWidth || pos.y > camera.scaledPixelHeight);
+
+    }
+    
     private void LimiterPosCam()
     {
         
         //en partant du bord gauche, dans le sens horaire
+        var position = camera.transform.position;
         Vector4 bordsCam = new Vector4
         {
-            x = camera.transform.position.x - camera.orthographicSize * camera.aspect,
-            y = camera.transform.position.y + camera.orthographicSize,
-            z = camera.transform.position.x + camera.aspect * camera.orthographicSize,
-            w = camera.transform.position.y - camera.orthographicSize
+            x = position.x - camera.orthographicSize * camera.aspect,
+            y = position.y + camera.orthographicSize,
+            z = position.x + camera.aspect * camera.orthographicSize,
+            w = position.y - camera.orthographicSize
         };
         Vector4 limites = new Vector4
         {
@@ -127,9 +137,6 @@ public class CameraMan : MonoBehaviour
         };
         
         Vector3 nvllePosition = transform.position;
-        
-        Debug.DrawLine(transform.position, new Vector3(transform.position.x,limites.w,transform.position.z));
-        Debug.DrawLine(transform.position, new Vector3(transform.position.x,bordsCam.w,transform.position.z),Color.cyan);
 
         if (bordsCam.x < limites.x)
         {

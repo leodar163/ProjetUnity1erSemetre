@@ -26,7 +26,7 @@ public class AlerteCoxi : MonoBehaviour
     
     private void Update()
     {
-        if (CoxiEstDansCamera())
+        if (!CameraMan.Singleton.EstDansCamera(coxi.transform.position))
         {
             PointerCoxi();
             PositionnerAuBordEcran();
@@ -35,14 +35,6 @@ public class AlerteCoxi : MonoBehaviour
         else AfficherAlerte(false);
     }
 
-    private bool CoxiEstDansCamera()
-    {
-        Vector2 posCoxi = Camera.main.WorldToScreenPoint(coxi.transform.position);
-        return !(posCoxi.x < 0 || posCoxi.y > 0 ||
-                 posCoxi.x > Camera.main.scaledPixelWidth || posCoxi.y > Camera.main.scaledPixelHeight);
-
-    }
-    
     private void AfficherAlerte(bool afficher)
     {
         PanoAlerte.gameObject.SetActive(afficher);

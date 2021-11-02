@@ -53,12 +53,17 @@ public class SpawnerCoxinelle : MonoBehaviour
         }
 
         ZoneSpawn zoneSpawnAlea = zonesSpawn[Random.Range(0, zonesSpawn.Count)];
-        Vector2 posAlea = new Vector2(Random.Range(zoneSpawnAlea.position.x - zoneSpawnAlea.etendue.x / 2,
+        Vector3 posAlea = new Vector3
+        {
+            x =Random.Range(zoneSpawnAlea.position.x - zoneSpawnAlea.etendue.x / 2,
                 zoneSpawnAlea.position.x + zoneSpawnAlea.etendue.x / 2),
-            Random.Range(zoneSpawnAlea.position.y - zoneSpawnAlea.etendue.y / 2,
-                zoneSpawnAlea.position.y + zoneSpawnAlea.etendue.y / 2));
-        
-        if (Instantiate(coxiBase.gameObject, posAlea, new Quaternion()).TryGetComponent(out Coxinelle nvlleCoxi))
+
+            y = Random.Range(zoneSpawnAlea.position.y - zoneSpawnAlea.etendue.y / 2,
+                zoneSpawnAlea.position.y + zoneSpawnAlea.etendue.y / 2),
+            z = transform.position.z
+        };
+
+        if (Instantiate(coxiBase.gameObject, posAlea, new Quaternion(), transform).TryGetComponent(out Coxinelle nvlleCoxi))
         {
             nvlleCoxi.AssignerPointSpawn(posAlea);
             nvlleCoxi.AssignerPuceron(ListePucerons.RecupPuceronAleatoire());

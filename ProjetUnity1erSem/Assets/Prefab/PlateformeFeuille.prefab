@@ -67,6 +67,10 @@ PrefabInstance:
       propertyPath: m_InstanceId
       value: -223168
       objectReference: {fileID: 0}
+    - target: {fileID: 5449649497526316852, guid: 7c69e2b1fad322745896263e7aa9c711, type: 3}
+      propertyPath: m_ColliderMask.m_Bits
+      value: 2048
+      objectReference: {fileID: 0}
     - target: {fileID: 7992322137214452403, guid: 7c69e2b1fad322745896263e7aa9c711, type: 3}
       propertyPath: m_Sprite
       value: 

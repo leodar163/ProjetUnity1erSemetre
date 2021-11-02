@@ -10,9 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1634060569969609756}
   - component: {fileID: 1634060569969609754}
-  - component: {fileID: 1634060569969609755}
   m_Layer: 7
-  m_Name: Circle
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,8 +71,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 0.8490566, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: -2082898729051171525, guid: 3ccdd50a1e16e1f42b3a6d2adaa39560, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -83,22 +82,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &1634060569969609755
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1634060569969609757}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!1 &1634060570627035066
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,6 +93,8 @@ GameObject:
   - component: {fileID: 1634060570627035064}
   - component: {fileID: 1634060570627035065}
   - component: {fileID: 912240933239190050}
+  - component: {fileID: 4867876933451133088}
+  - component: {fileID: 7634635864880731520}
   m_Layer: 7
   m_Name: Coxinelle
   m_TagString: Untagged
@@ -152,7 +137,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &912240933239190050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,7 +151,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vitesse: 2
-  distanceAttaque: 0.05
-  tmpsPrTuerPuceron: 3
+  distanceAttaque: 0.3
+  tmpsPrTuerPuceron: 10
   rb: {fileID: 1634060570627035065}
   sprRend: {fileID: 1634060569969609754}
+--- !u!70 &4867876933451133088
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634060570627035066}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.06128174, y: -0.069587246}
+  m_Size: {x: 0.5425657, y: 0.20433187}
+  m_Direction: 1
+--- !u!95 &7634635864880731520
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634060570627035066}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b79ec83050a3c1741bd3462b43195b3f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

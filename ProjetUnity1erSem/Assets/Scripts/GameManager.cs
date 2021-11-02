@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     public enum  TypeMort
     {
         tomber,
-        plusMoucheron
+        pluPuceron
     }
     public void GameOver(TypeMort typeMort)
     {

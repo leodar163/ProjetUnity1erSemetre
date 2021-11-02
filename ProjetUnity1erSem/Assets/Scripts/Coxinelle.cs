@@ -39,6 +39,7 @@ public class Coxinelle : MonoBehaviour
         {
             RejoindrePuceronANiquer();
         }
+        RegarderDirection();
     }
 
     
@@ -74,6 +75,11 @@ public class Coxinelle : MonoBehaviour
         sEnfuit = true;
     }
 
+    private void RegarderDirection()
+    {
+        sprRend.flipX = rb.velocity.x < 0 ? true : rb.velocity.x > 0 ? false : sprRend.flipX;
+    }
+    
     public void AssignerPointSpawn(Vector2 origine)
     {
         pointSpawn = origine;

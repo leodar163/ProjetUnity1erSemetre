@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ListePucerons : MonoBehaviour
 {
@@ -25,7 +27,7 @@ public class ListePucerons : MonoBehaviour
     {
         get
         {
-            List<Puceron> puceronsLibres = LesPucerons.Where(puceron => !puceron.estAttaque).ToList();
+            List<Puceron> puceronsLibres = listePucerons.Where(puceron => !puceron.estAttaque).ToList();
             return puceronsLibres.Count == 0 ? null : puceronsLibres;
         }
     }
@@ -39,6 +41,20 @@ public class ListePucerons : MonoBehaviour
 
     public void RetirerPuceron(Puceron puceronARetirer)
     {
-        if(LesPucerons.Contains(puceronARetirer)) LesPucerons.Remove(puceronARetirer);
+        if(listePucerons.Contains(puceronARetirer)) listePucerons.Remove(puceronARetirer);
+    }
+
+    private void OnValidate()
+    {
+        ActualiserListePuceron();
+    }
+
+    private void ActualiserListePuceron()
+    {
+        listePucerons.Clear();
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if(transform.GetChild(i).TryGetComponent(out Puceron puceron)) listePucerons.Add(puceron);
+        }
     }
 }

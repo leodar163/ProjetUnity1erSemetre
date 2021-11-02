@@ -11,47 +11,53 @@ public class Puceron : MonoBehaviour
     [SerializeField] private Transform ptAttaqueGauche;
     [SerializeField] private Transform cul;
     [SerializeField] private SpriteRenderer sprRend;
-    [Header("Couleurs")]
-    [SerializeField] private Color32 couleurLaitbuvable;
-    [SerializeField] private Color32 couleurLaitNonBuvable;
-    
+
+    [Header("Sprites Lait")]
+    [SerializeField] private List<Sprite> etapesLait;
+
     [Space(20)]
     [Tooltip("Le temps que met le lait à arriver à 100%")]
     [SerializeField] private float tempsSecretionLait;
 
-    public bool goutteBuvable;
+    private bool goutteBuvable => tailleGoute >= 1;
 
-    public bool estAttaque = false;
+    public bool estAttaque;
+    private float tailleGoute;
     
     private void Start()
     {
-        cul.localScale = goutteBuvable ? Vector3.one : Vector3.zero;
+
     }
 
     private void Update()
     {
         SecreterLait();
+        GererEtapesLait();
     }
 
     private void SecreterLait()
     {
-        if (cul.localScale.x >= 1)
+        if (tailleGoute >= 1)
         {
-            cul.localScale = Vector3.one;
-            goutteBuvable = true;
-            sprRend.color = couleurLaitbuvable;
+            tailleGoute = 1;
         }
         else
         {
-            cul.localScale += Vector3.one * (1 / tempsSecretionLait * Time.deltaTime);
-            goutteBuvable = false;
-            sprRend.color = couleurLaitNonBuvable;
+            tailleGoute += 1 / tempsSecretionLait * Time.deltaTime;
         }
+        
     }
 
+    private void GererEtapesLait()
+    {
+        if (etapesLait == null || etapesLait.Count == 0) return;
+        int index = (int)Mathf.Lerp(0, etapesLait.Count -1, tailleGoute);
+        sprRend.sprite = etapesLait[index];
+    }
+    
     public void RecolterLait()
     {
-        cul.localScale = Vector3.zero;
+        tailleGoute = 0;
     }
 
     public void Mourir()
