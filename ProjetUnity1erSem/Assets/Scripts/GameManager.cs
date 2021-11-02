@@ -28,4 +28,23 @@ public class GameManager : MonoBehaviour
         scoreDistance += metreParSec * (int)nivoFatigue * Time.deltaTime;
         textScore.text = ScoreDistance + " m";
     }
+
+    public enum  TypeMort
+    {
+        tomber,
+        plusMoucheron
+    }
+    public void GameOver(TypeMort typeMort)
+    {
+        Quitterjeu();
+    }
+
+    public void Quitterjeu()
+    {
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
 }

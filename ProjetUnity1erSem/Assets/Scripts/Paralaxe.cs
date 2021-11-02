@@ -20,6 +20,7 @@ public class Paralaxe : MonoBehaviour
     {
         public Transform transformPlan;
         public float vitesseDefilement;
+        public float vitesseArret;
         public float profondeur;
         [HideInInspector] public float largeur;
     }
@@ -61,8 +62,9 @@ public class Paralaxe : MonoBehaviour
     {
         foreach (var plan in plans)
         {
-            plan.transformPlan.position += new Vector3(directionDefilement,0) * Time.deltaTime * VitesseDefilement *
+            plan.transformPlan.position += new Vector3(directionDefilement, 0) * Time.deltaTime * VitesseDefilement *
                                            plan.vitesseDefilement;
+            if(VitesseDefilement == 0) plan.transformPlan.position += new Vector3(directionDefilement, 0) * Time.deltaTime * plan.vitesseArret;
             if (Mathf.Abs(plan.transformPlan.localPosition.x) >= plan.largeur)
             {
                 plan.transformPlan.localPosition = new Vector3(0, plan.transformPlan.localPosition.y, plan.profondeur);
