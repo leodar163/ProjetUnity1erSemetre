@@ -111,7 +111,7 @@ public class CameraMan : MonoBehaviour
     public bool EstDansCamera(Vector3 position)
     {
         Vector2 pos = camera.WorldToScreenPoint(position);
-        return !(pos.x < 0 || pos.y > 0 ||
+        return !(pos.x < 0 || pos.y < 0 ||
                  pos.x > camera.scaledPixelWidth || pos.y > camera.scaledPixelHeight);
 
     }

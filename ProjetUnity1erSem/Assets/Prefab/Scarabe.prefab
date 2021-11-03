@@ -293,6 +293,8 @@ MonoBehaviour:
   tmpsFatigue: 10
   vitesseRotationRoue: 20
   roue: {fileID: 4898586263884723468}
+  animScarab: {fileID: 2678395133425141614}
+  animLianes: {fileID: 2024539124516484433}
 --- !u!1 &4254445142182064455
 GameObject:
   m_ObjectHideFlags: 0

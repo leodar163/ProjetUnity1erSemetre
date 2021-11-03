@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,11 +23,13 @@ public class GameManager : MonoBehaviour
     public int ScoreDistance => (int)scoreDistance;
 
     [SerializeField] private float metreParSec = 0.1f;
+    [SerializeField] private GameObject menuPause;
+    private bool estEnPause;
 
     public void AjouterScore(Scarabe.Fatigue nivoFatigue)
     {
         scoreDistance += metreParSec * (int)nivoFatigue * Time.deltaTime;
-        textScore.text = ScoreDistance + " m";
+        textScore.text = ScoreDistance + "M";
     }
 
     public enum  TypeMort
@@ -34,11 +37,25 @@ public class GameManager : MonoBehaviour
         tomber,
         pluPuceron
     }
+
+    private void Awake()
+    {
+        if (!menuPause) menuPause = GameObject.FindWithTag("MenuPause");
+        menuPause.SetActive(false);
+    }
+
     public void GameOver(TypeMort typeMort)
     {
         Quitterjeu();
     }
 
+    public void Pause()
+    {
+        Time.timeScale = estEnPause ? 1 : 0;
+        estEnPause = !estEnPause;
+        menuPause.SetActive(estEnPause);
+    }
+    
     public void Quitterjeu()
     {
         #if UNITY_EDITOR
