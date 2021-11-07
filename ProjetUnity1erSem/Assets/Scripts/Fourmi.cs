@@ -36,13 +36,11 @@ public class Fourmi : MonoBehaviour
         Gizmos.DrawLine(origineDroite.position, origineDroite.position + Vector3.right * distanceAttaque);
     }*/
 
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         MouvementLateral();
@@ -53,6 +51,11 @@ public class Fourmi : MonoBehaviour
         if (Input.GetKeyDown(toucheAttaque))
         {
             Attaque();
+        }
+
+        if (Input.GetKeyDown(toucheInteraction))
+        {
+            Interaction();
         }
 
     }
@@ -103,6 +106,7 @@ public class Fourmi : MonoBehaviour
 
         RaycastHit2D hit3 = Physics2D.Raycast(origine1, direction1, distance, DetectionSol);
         RaycastHit2D hit4 = Physics2D.Raycast(origine2, direction2, distance, DetectionSol);
+        // public static Collider2D hit3 OverlapBox(origine1, 1,);
 
         if (hit3 && Input.GetKey(toucheDroite))
         {
@@ -210,6 +214,10 @@ public class Fourmi : MonoBehaviour
     // Pour stocker et redonne le lait
 
     #endregion Lait
+     void Interaction()
+    {
+
+    }
 
     #region Attaque
     // La fourmi contre-attaque!
