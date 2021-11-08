@@ -27,16 +27,18 @@ public class Fourmi : MonoBehaviour
     [SerializeField] private bool enMouvement;
     [SerializeField] private bool aPortee;
 
-    [SerializeField] private LayerMask DetectionSol;
+    [SerializeField] private LayerMask detectionSol;
     [SerializeField] private LayerMask maskCoxi;
+
+    [SerializeField] private Vector2 tailleBoite;
 
     private int direction = 1;
 
-    /*private void OnDrawGizmos()
+    private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(origineDroite.position, origineDroite.position + Vector3.right * distanceAttaque);
-    }*/
+        Gizmos.DrawWireCube(origineDroite.position, tailleBoite);
+    }
 
     void Start()
     {
@@ -107,9 +109,9 @@ public class Fourmi : MonoBehaviour
         Vector2 origine2 = origineGauche.position;
         Vector2 direction2 = new Vector2(-0.5f, 0);
 
-        RaycastHit2D hit3 = Physics2D.Raycast(origine1, direction1, distance, DetectionSol);
-        RaycastHit2D hit4 = Physics2D.Raycast(origine2, direction2, distance, DetectionSol);
-        // public static Collider2D hit3 OverlapBox(origine1, 1,);
+       // RaycastHit2D hit3 = Physics2D.Raycast(origine1, direction1, distance, DetectionSol);
+        RaycastHit2D hit4 = Physics2D.Raycast(origine2, direction2, distance, detectionSol);
+        Collider2D hit3 = Physics2D.OverlapBox(origine1, direction1, 0, detectionSol);
 
         if (hit3 && Input.GetKey(toucheDroite))
         {
@@ -166,9 +168,9 @@ public class Fourmi : MonoBehaviour
         Vector2 direction = Vector2.down;
         Vector2 decalage = new Vector2(0.13f, 0);
 
-        RaycastHit2D hit = Physics2D.Raycast(origine - decalage, direction, distance, DetectionSol);
-        RaycastHit2D hit1 = Physics2D.Raycast(origine, direction, distance, DetectionSol);
-        RaycastHit2D hit2 = Physics2D.Raycast(origine + decalage, direction, distance, DetectionSol);
+        RaycastHit2D hit = Physics2D.Raycast(origine - decalage, direction, distance, detectionSol);
+        RaycastHit2D hit1 = Physics2D.Raycast(origine, direction, distance, detectionSol);
+        RaycastHit2D hit2 = Physics2D.Raycast(origine + decalage, direction, distance, detectionSol);
         
         if (hit || hit1 || hit2)
         {
@@ -236,9 +238,8 @@ public class Fourmi : MonoBehaviour
         if (hitCoxi.collider)
         {
             if (hitCoxi.collider.TryGetComponent(out Coxinelle coxinelle))
-            { 
-                 Destroy(coxinelle.gameObject);
-                
+            {
+                coxinelle.Mourir();  
             }
         }
     }
@@ -253,6 +254,11 @@ public class Fourmi : MonoBehaviour
         {
             animator.Play("FourmiAvance");
         }
+        else
+        {
+            animator.SetBool("avance", false);
+        }
+        
         if (Input.GetKey(toucheDroite))
         {
             spriteRenderer.flipX = true;
