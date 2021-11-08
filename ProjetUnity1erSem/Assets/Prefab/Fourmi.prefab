@@ -220,6 +220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 7037516648706766431}
   spriteRenderer: {fileID: 488424909645115461}
+  animator: {fileID: 1136315997742854462}
   pied: {fileID: 6206868394004712605}
   origineDroite: {fileID: 582424817742740114}
   origineGauche: {fileID: 8167908484118319826}

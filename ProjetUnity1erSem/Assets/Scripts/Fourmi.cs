@@ -6,6 +6,7 @@ public class Fourmi : MonoBehaviour
 {
     public Rigidbody2D rb;
     public SpriteRenderer spriteRenderer;
+    public Animator animator;
     [SerializeField] private Transform pied;
     [SerializeField] private Transform origineDroite;
     [SerializeField] private Transform origineGauche;
@@ -248,7 +249,11 @@ public class Fourmi : MonoBehaviour
 
     void GererAnims()
     {
-        if(Input.GetKey(toucheDroite))
+        if (rb.velocity.magnitude > 0.01f)
+        {
+            animator.Play("FourmiAvance");
+        }
+        if (Input.GetKey(toucheDroite))
         {
             spriteRenderer.flipX = true;
         }
