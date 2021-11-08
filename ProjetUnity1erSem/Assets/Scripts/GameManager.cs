@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -41,12 +42,24 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         if (!menuPause) menuPause = GameObject.FindWithTag("MenuPause");
-        menuPause.SetActive(false);
+        if (menuPause) menuPause.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            Pause();
+        }
     }
 
     public void GameOver(TypeMort typeMort)
     {
-        Quitterjeu();
+        if(!global::GameOver.Singleton) return;
+        int score = ScoreDistance;
+        EnregistrerScore();
+        bool estMeilleurScore = score == PlayerPrefs.GetInt("MeilleurScore");
+        global::GameOver.Singleton.AfficherGameOver(score,estMeilleurScore,typeMort);
     }
 
     public void Pause()
@@ -58,10 +71,28 @@ public class GameManager : MonoBehaviour
     
     public void Quitterjeu()
     {
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
         Application.Quit();
 #endif
+    }
+
+    public void ChargerScene(int index)
+    {
+        SceneManager.LoadScene(index);
+    }
+
+    public void OuvrirURL(string url)
+    {
+        Application.OpenURL(url);
+    }
+
+    private void EnregistrerScore()
+    {
+        int ancienMeilleurScore = PlayerPrefs.GetInt("MeilleurScore");
+        int nvMeilleurScore = ScoreDistance > ancienMeilleurScore ? ScoreDistance : ancienMeilleurScore;
+        
+        PlayerPrefs.SetInt("MeilleurScore", nvMeilleurScore);
     }
 }
