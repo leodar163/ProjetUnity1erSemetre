@@ -5,6 +5,7 @@ using UnityEngine;
 public class Fourmi : MonoBehaviour
 {
     public Rigidbody2D rb;
+    public SpriteRenderer spriteRenderer;
     [SerializeField] private Transform pied;
     [SerializeField] private Transform origineDroite;
     [SerializeField] private Transform origineGauche;
@@ -47,6 +48,7 @@ public class Fourmi : MonoBehaviour
         MouvementSaut();
         DetectSol();
         DetectMur();
+        GererAnims();
 
         if (Input.GetKeyDown(toucheAttaque))
         {
@@ -212,12 +214,11 @@ public class Fourmi : MonoBehaviour
     // Là elle agit
     #region Lait
     // Pour stocker et redonne le lait
-
-    #endregion Lait
-     void Interaction()
+    void Interaction()
     {
 
     }
+    #endregion Lait
 
     #region Attaque
     // La fourmi contre-attaque!
@@ -243,4 +244,21 @@ public class Fourmi : MonoBehaviour
 
     #endregion Attaque
     #endregion Interaction
+    #region Animations
+
+    void GererAnims()
+    {
+        if(Input.GetKey(toucheDroite))
+        {
+            spriteRenderer.flipX = true;
+        }
+
+        if (Input.GetKey(toucheGauche))
+        {
+            spriteRenderer.flipX = false;
+        }
+
+    }
+
+    #endregion
 }

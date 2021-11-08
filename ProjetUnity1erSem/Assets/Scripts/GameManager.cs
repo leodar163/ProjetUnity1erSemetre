@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         if (!menuPause) menuPause = GameObject.FindWithTag("MenuPause");
-        menuPause.SetActive(false);
+        if (menuPause)  menuPause.SetActive(false);
     }
 
     public void GameOver(TypeMort typeMort)
