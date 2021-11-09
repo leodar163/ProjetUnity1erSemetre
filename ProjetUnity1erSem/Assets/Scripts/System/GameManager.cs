@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float metreParSec = 0.1f;
     [SerializeField] private GameObject menuPause;
     private bool estEnPause;
-
+    
     public void AjouterScore(Scarabe.Fatigue nivoFatigue)
     {
         scoreDistance += metreParSec * (int)nivoFatigue * Time.deltaTime;
@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
         {
             Pause();
         }
+        if(ListePucerons.Singleton.LesPucerons.Count <= 0) GameOver(TypeMort.pluPuceron);
     }
 
     public void GameOver(TypeMort typeMort)

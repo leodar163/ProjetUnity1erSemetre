@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class GameOver : MonoBehaviour
 {
-    static private GameOver cela;
+    private static GameOver cela;
 
     public static GameOver Singleton
     {
@@ -40,16 +40,11 @@ public class GameOver : MonoBehaviour
 
         texteScore.text += "Distance Parcourue : " + score + "M";
 
-        switch (typeMort)
+        texteMort.text = typeMort switch
         {
-            case GameManager.TypeMort.tomber :
-                texteMort.text = "Tu es tombe du bateau ! Les fourmis ne savent pas nager...";
-                break;
-            case GameManager.TypeMort.pluPuceron :
-                texteMort.text = "Tu n'as plus de puceron. Tu est condamné à errer sur les fots";
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(typeMort), typeMort, null);
-        }
+            GameManager.TypeMort.tomber => "Tu es tombe du bateau ! Les fourmis ne savent pas nager...",
+            GameManager.TypeMort.pluPuceron => "Tu n'as plus de puceron. Tu est condamne à errer sur les flots",
+            _ => throw new ArgumentOutOfRangeException(nameof(typeMort), typeMort, null)
+        };
     }
 }

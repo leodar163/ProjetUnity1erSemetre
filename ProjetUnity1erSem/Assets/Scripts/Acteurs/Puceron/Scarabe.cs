@@ -23,11 +23,13 @@ public class Scarabe : MonoBehaviour
     [Header("Animations")]
     [SerializeField] private Animator animScarab; 
     [SerializeField] private Animator animLianes; 
+    [SerializeField] private Animator animHelices; 
     private IEnumerator coolDownFatigue;
     
     private bool peutManger = true;
     private static readonly int vitesseCourseAnim = Animator.StringToHash("VitesseCourse");
     private static readonly int VitesseRoulement = Animator.StringToHash("VitesseRoulement");
+    private static readonly int VitesseTournage = Animator.StringToHash("VitesseTournage");
     public bool PeutManger => peutManger;
     
     // Start is called before the first frame update
@@ -71,14 +73,17 @@ public class Scarabe : MonoBehaviour
             case Fatigue.enForme :
                 animScarab.SetFloat(vitesseCourseAnim, 2);
                 animLianes.SetFloat(VitesseRoulement, 2);
+                animHelices.SetFloat(VitesseTournage, 2);
                 break;
             case Fatigue.fatigue :
                 animScarab.SetFloat(vitesseCourseAnim, 1);
                 animLianes.SetFloat(VitesseRoulement, 1);
+                animHelices.SetFloat(VitesseTournage, 1);
                 break;
             case Fatigue.extenue :
                 animScarab.SetFloat(vitesseCourseAnim, 0);
                 animLianes.SetFloat(VitesseRoulement, 0);
+                animHelices.SetFloat(VitesseTournage, 0);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
