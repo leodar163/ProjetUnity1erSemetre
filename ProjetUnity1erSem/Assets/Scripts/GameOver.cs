@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 
 public class GameOver : MonoBehaviour
@@ -21,23 +22,29 @@ public class GameOver : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI texteScore;
     [SerializeField] private TextMeshProUGUI texteMort;
-    
+    [SerializeField] private GameObject Menu;
+
+    private void Awake()
+    {
+        Menu.SetActive(false);
+    }
+
     public void AfficherGameOver(int score, bool estMeilleurScore, GameManager.TypeMort typeMort)
     {
-        gameObject.SetActive(true);
+        Menu.SetActive(true);
         texteScore.text = "";
         if (estMeilleurScore)
         {
-            texteScore.text = "MEILLEUR SCORE !!!\n";
+            texteScore.text = "MEILLEUR DISTANCE !!!    ";
         }
 
-        texteScore.text += score.ToString();
+        texteScore.text += "Distance Parcourue : " + score + "M";
 
         switch (typeMort)
         {
             case GameManager.TypeMort.tomber :
+                texteMort.text = "Tu es tombe du bateau ! Les fourmis ne savent pas nager...";
                 break;
-                texteMort.text = "Tu es tombé du bateau ! Les fourmis ne savent pas nager...";
             case GameManager.TypeMort.pluPuceron :
                 texteMort.text = "Tu n'as plus de puceron. Tu est condamné à errer sur les fots";
                 break;

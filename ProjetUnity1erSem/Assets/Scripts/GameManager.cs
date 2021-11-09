@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
     public void GameOver(TypeMort typeMort)
     {
         if(!global::GameOver.Singleton) return;
+        Time.timeScale = 0;
         int score = ScoreDistance;
         EnregistrerScore();
         bool estMeilleurScore = score == PlayerPrefs.GetInt("MeilleurScore");
@@ -81,6 +82,7 @@ public class GameManager : MonoBehaviour
     public void ChargerScene(int index)
     {
         SceneManager.LoadScene(index);
+        Time.timeScale = 1;
     }
 
     public void OuvrirURL(string url)

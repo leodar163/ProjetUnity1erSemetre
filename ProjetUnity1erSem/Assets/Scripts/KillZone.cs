@@ -17,9 +17,10 @@ public class KillZone : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.TryGetComponent(out Fourmi fourmi))
+        
+        if (other.TryGetComponent(out Fourmi fourmi))
         {
             GameManager.Singleton.GameOver(GameManager.TypeMort.tomber);
         }
