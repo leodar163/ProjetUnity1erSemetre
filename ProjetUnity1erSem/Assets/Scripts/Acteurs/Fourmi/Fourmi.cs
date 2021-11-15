@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ public class Fourmi : MonoBehaviour
 {
     public Rigidbody2D rb;
     public SpriteRenderer spriteRenderer;
+    [SerializeField] private SpriteRenderer spriteRendererAbdomene;
     public Animator animator;
     [SerializeField] private Transform pied;
     [SerializeField] private Transform origineDroite;
@@ -66,10 +68,10 @@ public class Fourmi : MonoBehaviour
     }
 
     #region Mouvement
-    // Là elle bouge
+    // Lï¿½ elle bouge
     #region Lateral
     //Les mouvements Droite Gauche
-    void MouvementLateral()
+    private void MouvementLateral()
     {
         enMouvement = false;
             
@@ -93,7 +95,7 @@ public class Fourmi : MonoBehaviour
             
         }
 
-       if (!enMouvement & auSol)
+        if (!enMouvement & auSol)
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
@@ -213,8 +215,9 @@ public class Fourmi : MonoBehaviour
     // Vector2 direction1 = Vector2.right;
     #endregion Saut
     #endregion Mouvement
+    
     #region Interaction
-    // Là elle agit
+    // Lï¿½ elle agit
     #region Lait
     // Pour stocker et redonne le lait
     void Interaction()
@@ -246,13 +249,14 @@ public class Fourmi : MonoBehaviour
 
     #endregion Attaque
     #endregion Interaction
+    
     #region Animations
 
     void GererAnims()
     {
-        if (rb.velocity.magnitude > 0.01f)
+        if (!auMur && auSol && enMouvement)
         {
-            animator.Play("FourmiAvance");
+            animator.SetBool("avance", true);
         }
         else
         {
@@ -262,11 +266,15 @@ public class Fourmi : MonoBehaviour
         if (Input.GetKey(toucheDroite))
         {
             spriteRenderer.flipX = true;
+
+            spriteRendererAbdomene.flipX = true;
         }
 
         if (Input.GetKey(toucheGauche))
         {
             spriteRenderer.flipX = false;
+ 
+            spriteRendererAbdomene.flipX = false;
         }
 
     }

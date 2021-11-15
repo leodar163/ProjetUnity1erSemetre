@@ -26,7 +26,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float metreParSec = 0.1f;
     [SerializeField] private GameObject menuPause;
     private bool estEnPause;
-    
+    private bool estGameOver;
+
     public void AjouterScore(Scarabe.Fatigue nivoFatigue)
     {
         scoreDistance += metreParSec * (int)nivoFatigue * Time.deltaTime;
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour
     {
         if (!menuPause) menuPause = GameObject.FindWithTag("MenuPause");
         if (menuPause) menuPause.SetActive(false);
+        
     }
 
     private void Update()
@@ -51,7 +53,7 @@ public class GameManager : MonoBehaviour
         {
             Pause();
         }
-        if(ListePucerons.Singleton.LesPucerons.Count <= 0) GameOver(TypeMort.pluPuceron);
+        if(ListePucerons.Singleton.LesPucerons.Count <= 0 && !estGameOver) GameOver(TypeMort.pluPuceron);
     }
 
     public void GameOver(TypeMort typeMort)
@@ -62,6 +64,7 @@ public class GameManager : MonoBehaviour
         EnregistrerScore();
         bool estMeilleurScore = score == PlayerPrefs.GetInt("MeilleurScore");
         global::GameOver.Singleton.AfficherGameOver(score,estMeilleurScore,typeMort);
+        estGameOver = true;
     }
 
     public void Pause()
@@ -82,8 +85,8 @@ public class GameManager : MonoBehaviour
 
     public void ChargerScene(int index)
     {
-        SceneManager.LoadScene(index);
         Time.timeScale = 1;
+        SceneManager.LoadScene(index);
     }
 
     public void OuvrirURL(string url)

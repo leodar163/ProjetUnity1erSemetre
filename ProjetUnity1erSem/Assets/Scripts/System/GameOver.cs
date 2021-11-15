@@ -43,7 +43,7 @@ public class GameOver : MonoBehaviour
         texteMort.text = typeMort switch
         {
             GameManager.TypeMort.tomber => "Tu es tombe du bateau ! Les fourmis ne savent pas nager...",
-            GameManager.TypeMort.pluPuceron => "Tu n'as plus de puceron. Tu est condamne à errer sur les flots",
+            GameManager.TypeMort.pluPuceron => "Tu n'as plus de puceron. Tu est condamne a errer sur les flots",
             _ => throw new ArgumentOutOfRangeException(nameof(typeMort), typeMort, null)
         };
     }

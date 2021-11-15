@@ -1,11 +1,5 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
-using UnityEditorInternal.VersionControl;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Camera))]
@@ -113,7 +107,6 @@ public class CameraMan : MonoBehaviour
         Vector2 pos = camera.WorldToScreenPoint(position);
         return !(pos.x < 0 || pos.y < 0 ||
                  pos.x > camera.scaledPixelWidth || pos.y > camera.scaledPixelHeight);
-
     }
     
     private void LimiterPosCam()
