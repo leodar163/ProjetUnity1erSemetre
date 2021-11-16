@@ -72,7 +72,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8845689201981549840}
   - component: {fileID: 488424909645115461}
-  - component: {fileID: 1136315997742854462}
   m_Layer: 11
   m_Name: SpriteAvant
   m_TagString: Untagged
@@ -145,25 +144,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &1136315997742854462
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 576050151343416726}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4b5ca950b3b55084791b98fdc836e9f9, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2098765884178218961
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,6 +156,7 @@ GameObject:
   - component: {fileID: 7037516648706766431}
   - component: {fileID: 1659315757771321938}
   - component: {fileID: 599540599070823465}
+  - component: {fileID: 3696955574769494304}
   m_Layer: 11
   m_Name: Fourmi
   m_TagString: Untagged
@@ -253,7 +234,7 @@ MonoBehaviour:
   rb: {fileID: 7037516648706766431}
   spriteRenderer: {fileID: 488424909645115461}
   spriteRendererAbdomene: {fileID: 1729446202339398490}
-  animator: {fileID: 1136315997742854462}
+  animator: {fileID: 0}
   pied: {fileID: 6206868394004712605}
   origineDroite: {fileID: 582424817742740114}
   origineGauche: {fileID: 8167908484118319826}
@@ -277,6 +258,25 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   tailleBoite: {x: 0, y: 0}
+--- !u!95 &3696955574769494304
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098765884178218961}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4b5ca950b3b55084791b98fdc836e9f9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3004788347298947584
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,7 +347,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9116634436013559937}
   - component: {fileID: 1729446202339398490}
-  - component: {fileID: 3215356886290307463}
   m_Layer: 11
   m_Name: "SpriteAbdom\xE8ne"
   m_TagString: Untagged
@@ -420,22 +419,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &3215356886290307463
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6709944701425500194}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4b5ca950b3b55084791b98fdc836e9f9, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
