@@ -13,8 +13,13 @@ public class Fourmi : MonoBehaviour
     [SerializeField] private Transform pied;
     [SerializeField] private Transform origineDroite;
     [SerializeField] private Transform origineGauche;
+    
+    [Header ("Collision")]
     [SerializeField] private LayerMask detectionSol;
     [SerializeField] private LayerMask maskCoxi;
+    [SerializeField] private float distanceAttaque = 1;
+    [SerializeField] private Vector2 tailleBoite;
+    [SerializeField] private float porteeAttaque;
 
     [Header ("Commandes")]
     [SerializeField] private KeyCode toucheDroite;
@@ -27,8 +32,7 @@ public class Fourmi : MonoBehaviour
     [SerializeField] private float forceSaut = 50;
     [SerializeField] private float vitesse = 1.5f;
     [SerializeField] private float distance = 1.5f;
-    [SerializeField] private float distanceAttaque = 1;
-    [SerializeField] private Vector2 tailleBoite;
+    
     private bool regardeDroite;
     
     [Header ("Triggers")]
@@ -112,46 +116,14 @@ public class Fourmi : MonoBehaviour
 
         Vector2 origine1 = origineDroite.position;
         Vector2 direction1 = new Vector2(0.5f, 0);
-        /**Vector2 origine2 = origineGauche.position;
-        Vector2 direction2 = new Vector2(-0.5f, 0);
 
-        RaycastHit2D hit3 = Physics2D.Raycast(origine1, direction1, distance, DetectionSol);
-        RaycastHit2D hit4 = Physics2D.Raycast(origine2, direction2, distance, detectionSol);**/
         Collider2D hit3 = Physics2D.OverlapBox(origine1, direction1, 0, detectionSol);
 
-        if (hit3 &&( Input.GetKey(toucheDroite) || Input.GetKey(toucheGauche)))
+        if (hit3 && enMouvement)
         {
             auMur = true;
         }
 
-        /**if (hit3 && Input.GetKey(toucheGauche))
-        {
-            auMur = true;
-        }
-
-        if (rb.velocity.x > 0)
-        {
-            if (!auMur)
-            {
-                Debug.DrawRay(origine1, direction1 * distance, Color.green);
-            }
-            else
-            {
-                Debug.DrawRay(origine1, direction1 * distance, Color.red);
-            }
-        }
-
-        else if (rb.velocity.x < 0)
-        {
-            if (!auMur)
-            {
-                Debug.DrawRay(origine2, direction2 * distance, Color.green);
-            }
-            else
-            {
-                Debug.DrawRay(origine1, direction1 * distance, Color.red);
-            }
-        }**/
     }
     #endregion Lateral
     #region Saut
@@ -236,22 +208,30 @@ public class Fourmi : MonoBehaviour
     private void Attaque()
     {
         aPortee = false;
-        //Vector2 devant = new Vector2(origineDroite.position.x - transform.position.x, 0).normalized;
         Vector2 origine1 = origineDroite.position;
+        int direction = regardeDroite ? 1 : -1;
 
+        Debug.DrawRay(origine1, Vector2.right * direction * distanceAttaque, Color.yellow);
+        //RaycastHit2D hitCoxi = Physics2D.Raycast(origine1, Vector2.right * direction, distanceAttaque, maskCoxi);
 
-    int direction = regardeDroite ? 1 : -1;
+        Collider2D hitCoxi = Physics2D.OverlapCircle(origine1, porteeAttaque, maskCoxi);
 
-    Debug.DrawRay(origine1, Vector2.right * direction * distanceAttaque, Color.yellow);
-        RaycastHit2D hitCoxi = Physics2D.Raycast(origine1, Vector2.right * direction, distanceAttaque, maskCoxi);
-        if (hitCoxi.collider)
+        for (int i = 0; i < hitCoxi.Length; i++)
+        {
+            if(hitCoxi[i].TryGetComponent(out Coxinelle coxi))
+            {
+                coxi.Mourir();
+            }
+        }
+
+        /*if (hitCoxi.collider)
         {
             aPortee = true;
             if (hitCoxi.collider.TryGetComponent(out Coxinelle coxinelle) && aPortee)
             {
                 coxinelle.Mourir();  
             }
-        }
+        }*/
     }
 
     #endregion Attaque
