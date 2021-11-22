@@ -11,7 +11,7 @@ public class Fourmi : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRendererAbdomene;
     [SerializeField] private Animator animator;
     [SerializeField] private Transform pied;
-    [SerializeField] private Transform origineDroite;
+    [SerializeField] private Transform origineTete;
     [SerializeField] private Transform origineGauche;
     
     [Header ("Collision")]
@@ -19,6 +19,7 @@ public class Fourmi : MonoBehaviour
     [SerializeField] private LayerMask maskCoxi;
     [SerializeField] private float distanceAttaque = 1;
     [SerializeField] private Vector2 tailleBoite;
+    //[SerializeField] private Vector2 offsetBoite = new Vector2(origineTete.position.x, origineTete.position.y);
     [SerializeField] private float porteeAttaque;
 
     [Header ("Commandes")]
@@ -45,7 +46,7 @@ public class Fourmi : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(origineDroite.position, tailleBoite);
+        Gizmos.DrawWireCube(origineTete.position, tailleBoite);
     }
 
     void Start()
@@ -114,7 +115,7 @@ public class Fourmi : MonoBehaviour
     {
         auMur = false;
 
-        Vector2 origine1 = origineDroite.position;
+        Vector2 origine1 = origineTete.position;
         Vector2 direction1 = new Vector2(0.5f, 0);
 
         Collider2D hit3 = Physics2D.OverlapBox(origine1, direction1, 0, detectionSol);
@@ -208,7 +209,7 @@ public class Fourmi : MonoBehaviour
     private void Attaque()
     {
         aPortee = false;
-        Vector2 origine1 = origineDroite.position;
+        Vector2 origine1 = origineTete.position;
         int direction = regardeDroite ? 1 : -1;
 
         Debug.DrawRay(origine1, Vector2.right * direction * distanceAttaque, Color.yellow);
@@ -223,15 +224,6 @@ public class Fourmi : MonoBehaviour
                 coxi.Mourir();
             }
         }
-
-        /*if (hitCoxi.collider)
-        {
-            aPortee = true;
-            if (hitCoxi.collider.TryGetComponent(out Coxinelle coxinelle) && aPortee)
-            {
-                coxinelle.Mourir();  
-            }
-        }*/
     }
 
     #endregion Attaque
@@ -253,9 +245,9 @@ public class Fourmi : MonoBehaviour
         spriteRenderer.flipX = regardeDroite;
         spriteRendererAbdomene.flipX = regardeDroite;
 
-       Vector3 nvellePosition = origineDroite.localPosition;
+       Vector3 nvellePosition = origineTete.localPosition;
         nvellePosition.x *= (regardeDroite && nvellePosition.x < 0) || (!regardeDroite && nvellePosition.x > 0) ? -1 :  1;
-        origineDroite.localPosition = nvellePosition;
+        origineTete.localPosition = nvellePosition;
     }
 
     #endregion
