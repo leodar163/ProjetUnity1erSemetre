@@ -19,7 +19,7 @@ public class Fourmi : MonoBehaviour
     [SerializeField] private LayerMask maskCoxi;
     [SerializeField] private float distanceAttaque = 1;
     [SerializeField] private Vector2 tailleBoite;
-    //[SerializeField] private Vector2 offsetBoite = new Vector2(origineTete.position.x, origineTete.position.y);
+   // [SerializeField] private Vector2 offsetBoite/*= new Vector2(origineTete.position.x, origineTete.position.y)*/;
     [SerializeField] private float porteeAttaque;
 
     [Header ("Commandes")]
@@ -40,7 +40,7 @@ public class Fourmi : MonoBehaviour
     [SerializeField] private bool auSol;
     [SerializeField] private bool auMur;
     [SerializeField] private bool enMouvement;
-    [SerializeField] private bool aPortee;
+    //[SerializeField] private bool aPortee;
 
 
     private void OnDrawGizmos()
@@ -136,7 +136,7 @@ public class Fourmi : MonoBehaviour
             if (auSol)
             {
                 rb.AddForce(new Vector2(0, forceSaut));
-                enMouvement = true;
+                //enMouvement = true;
             }
         }
     }
@@ -208,14 +208,14 @@ public class Fourmi : MonoBehaviour
 
     private void Attaque()
     {
-        aPortee = false;
+       // aPortee = false;
         Vector2 origine1 = origineTete.position;
         int direction = regardeDroite ? 1 : -1;
 
         Debug.DrawRay(origine1, Vector2.right * direction * distanceAttaque, Color.yellow);
         //RaycastHit2D hitCoxi = Physics2D.Raycast(origine1, Vector2.right * direction, distanceAttaque, maskCoxi);
 
-        Collider2D[] hitCoxi = Physics2D.OverlapCircleAll(origine1, porteeAttaque, maskCoxi);
+        Collider2D[] hitCoxi = Physics2D.OverlapCircleAll(origine1, tailleBoite.x, maskCoxi);
 
         for (int i = 0; i < hitCoxi.Length; i++)
         {

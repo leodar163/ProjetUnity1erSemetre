@@ -236,7 +236,7 @@ MonoBehaviour:
   spriteRendererAbdomene: {fileID: 1729446202339398490}
   animator: {fileID: 3696955574769494304}
   pied: {fileID: 6206868394004712605}
-  origineDroite: {fileID: 582424817742740114}
+  origineTete: {fileID: 582424817742740114}
   origineGauche: {fileID: 8167908484118319826}
   detectionSol:
     serializedVersion: 2
@@ -245,8 +245,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   distanceAttaque: 0.2
-  tailleBoite: {x: 0.27, y: 0.39}
-  porteeAttaque: 0
+  tailleBoite: {x: 0.22, y: 0.52}
+  porteeAttaque: 1.04
   toucheDroite: 100
   toucheGauche: 113
   toucheSaut: 32
@@ -258,7 +258,6 @@ MonoBehaviour:
   auSol: 0
   auMur: 0
   enMouvement: 0
-  aPortee: 0
 --- !u!95 &3696955574769494304
 Animator:
   serializedVersion: 3
