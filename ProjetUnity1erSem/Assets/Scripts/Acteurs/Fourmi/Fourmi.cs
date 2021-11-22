@@ -214,7 +214,7 @@ public class Fourmi : MonoBehaviour
         Debug.DrawRay(origine1, Vector2.right * direction * distanceAttaque, Color.yellow);
         //RaycastHit2D hitCoxi = Physics2D.Raycast(origine1, Vector2.right * direction, distanceAttaque, maskCoxi);
 
-        Collider2D hitCoxi = Physics2D.OverlapCircle(origine1, porteeAttaque, maskCoxi);
+        Collider2D[] hitCoxi = Physics2D.OverlapCircleAll(origine1, porteeAttaque, maskCoxi);
 
         for (int i = 0; i < hitCoxi.Length; i++)
         {

@@ -216,8 +216,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0011946947, y: 0.17589803}
-  m_Size: {x: 0.8077258, y: 0.34881738}
+  m_Offset: {x: -0.013894866, y: 0.17589805}
+  m_Size: {x: 0.8331267, y: 0.34881738}
   m_Direction: 1
 --- !u!114 &599540599070823465
 MonoBehaviour:
@@ -244,6 +244,9 @@ MonoBehaviour:
   maskCoxi:
     serializedVersion: 2
     m_Bits: 128
+  distanceAttaque: 0.2
+  tailleBoite: {x: 0.27, y: 0.33}
+  porteeAttaque: 0
   toucheDroite: 100
   toucheGauche: 113
   toucheSaut: 32
@@ -252,8 +255,6 @@ MonoBehaviour:
   forceSaut: 230
   vitesse: 2
   distance: 0.12
-  distanceAttaque: 0.2
-  tailleBoite: {x: 0.14, y: 0.24}
   auSol: 0
   auMur: 0
   enMouvement: 0
