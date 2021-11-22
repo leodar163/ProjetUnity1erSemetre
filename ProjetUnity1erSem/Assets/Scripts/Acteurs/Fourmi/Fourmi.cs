@@ -76,7 +76,7 @@ public class Fourmi : MonoBehaviour
 
         if (Input.GetKeyDown(toucheInteraction))
         {
-            Interaction();
+            TraireLait();
         }
 
     }
@@ -176,9 +176,19 @@ public class Fourmi : MonoBehaviour
     // Là elle agit
     #region Lait
     // Pour stocker et redonne le lait
-    void Interaction()
+    public void TraireLait()
     {
+        Vector2 origine1 = origineTete.position;
+        int direction = regardeDroite ? 1 : -1;
+        Collider2D[] sucePuceron = Physics2D.OverlapCircleAll(origine1, tailleBoite.x, maskCoxi);
 
+        for (int i = 0; i < sucePuceron.Length; i++)
+        {
+            if (sucePuceron[i].TryGetComponent(out Puceron puceron))
+            {
+                puceron.RecolterLait();
+            }
+        }
     }
     #endregion Lait
 
