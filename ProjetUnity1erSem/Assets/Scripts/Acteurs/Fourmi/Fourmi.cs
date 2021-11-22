@@ -19,6 +19,7 @@ public class Fourmi : MonoBehaviour
     [SerializeField] private LayerMask maskCoxi;
     [SerializeField] private float distanceAttaque = 1;
     [SerializeField] private Vector2 tailleBoite;
+    [SerializeField] private Vector2 boiteDetectSol;
    // [SerializeField] private Vector2 offsetBoite/*= new Vector2(origineTete.position.x, origineTete.position.y)*/;
     [SerializeField] private float porteeAttaque;
 
@@ -32,7 +33,7 @@ public class Fourmi : MonoBehaviour
     [Header ("Variables")]
     [SerializeField] private float forceSaut = 50;
     [SerializeField] private float vitesse = 1.5f;
-    [SerializeField] private float distance = 1.5f;
+    //[SerializeField] private float distance = 1.5f;
     
     private bool regardeDroite;
     
@@ -45,8 +46,14 @@ public class Fourmi : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        Vector2 direction1 = new Vector2(0.5f, 0);
+
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireCube(origineTete.position, tailleBoite);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(pied.position, boiteDetectSol);
+        Gizmos.DrawWireCube(origineTete.position, direction1);
     }
 
     void Start()
@@ -147,45 +154,17 @@ public class Fourmi : MonoBehaviour
         Vector2 direction = Vector2.down;
         Vector2 decalage = new Vector2(0.13f, 0);
 
-        RaycastHit2D hit = Physics2D.Raycast(origine - decalage, direction, distance, detectionSol);
-        RaycastHit2D hit1 = Physics2D.Raycast(origine, direction, distance, detectionSol);
-        RaycastHit2D hit2 = Physics2D.Raycast(origine + decalage, direction, distance, detectionSol);
-        
-        if (hit || hit1 || hit2)
+        Collider2D hit = Physics2D.OverlapBox(origine, direction, 0, detectionSol);
+
+        if (hit)
         {
             auSol = true;
+            
         }
         else
         {
             auSol = false;
             
-        }
-
-        if(hit)
-        {
-            Debug.DrawRay(origine - decalage, direction * distance, Color.green);
-        }
-        else
-        {
-            Debug.DrawRay(origine - decalage, direction * distance, Color.red);
-        }
-
-        if(hit1)
-        {
-            Debug.DrawRay(origine, direction * distance, Color.green);
-        }
-        else
-        {
-            Debug.DrawRay(origine, direction * distance, Color.red);
-        }
-
-        if(hit2)
-        {
-            Debug.DrawRay(origine + decalage, direction * distance, Color.green);
-        }
-        else
-        {
-            Debug.DrawRay(origine + decalage, direction * distance, Color.red);
         }
 
     }
