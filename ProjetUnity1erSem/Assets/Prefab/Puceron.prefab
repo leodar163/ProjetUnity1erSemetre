@@ -39,7 +39,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1331685130723784929}
-  - component: {fileID: 5587202068552115410}
   m_Layer: 8
   m_Name: Cul
   m_TagString: Untagged
@@ -62,22 +61,6 @@ Transform:
   m_Father: {fileID: 8330897538426688933}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &5587202068552115410
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5597972157443299266}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.18906341}
-  m_Size: {x: 0.03586799, y: 0.27810565}
-  m_Direction: 0
 --- !u!1 &7047354106679864316
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,6 +183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8330897538426688933}
   - component: {fileID: 3830469234461432833}
+  - component: {fileID: 5550459187800757592}
   m_Layer: 8
   m_Name: Puceron
   m_TagString: Untagged
@@ -248,6 +232,22 @@ MonoBehaviour:
   - {fileID: -2145381326555886258, guid: e682ff255d42d6c46b5fe6597932a78b, type: 3}
   tempsSecretionLait: 3
   estAttaque: 0
+--- !u!70 &5550459187800757592
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8330897538426688932}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.007852793, y: -0.28663164}
+  m_Size: {x: 0.24870634, y: 0.97644126}
+  m_Direction: 0
 --- !u!1 &8330897539822201707
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,7 +258,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8330897539822201708}
   - component: {fileID: 8330897539822201709}
-  - component: {fileID: 8313197703572146147}
   m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
@@ -331,19 +330,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &8313197703572146147
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8330897539822201707}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.25664344

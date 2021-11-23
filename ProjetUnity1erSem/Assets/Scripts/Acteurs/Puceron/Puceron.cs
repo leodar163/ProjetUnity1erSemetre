@@ -57,7 +57,7 @@ public class Puceron : MonoBehaviour
     
     public void RecolterLait()
     {
-        tailleGoute = 0;
+        if(goutteBuvable) tailleGoute = 0;
     }
 
     public void Mourir()

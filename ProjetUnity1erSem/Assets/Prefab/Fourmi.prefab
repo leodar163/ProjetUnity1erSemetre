@@ -244,6 +244,9 @@ MonoBehaviour:
   maskCoxi:
     serializedVersion: 2
     m_Bits: 128
+  maskPuceron:
+    serializedVersion: 2
+    m_Bits: 256
   distanceAttaque: 0.2
   tailleBoite: {x: 0.22, y: 0.52}
   boiteDetectSol: {x: 0.82, y: 0.03}
@@ -255,7 +258,6 @@ MonoBehaviour:
   toucheInteraction: 101
   forceSaut: 230
   vitesse: 2
-  distance: 0.12
   auSol: 0
   auMur: 0
   enMouvement: 0

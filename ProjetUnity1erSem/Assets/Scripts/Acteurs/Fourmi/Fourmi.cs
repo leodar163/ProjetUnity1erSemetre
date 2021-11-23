@@ -17,6 +17,7 @@ public class Fourmi : MonoBehaviour
     [Header ("Collision")]
     [SerializeField] private LayerMask detectionSol;
     [SerializeField] private LayerMask maskCoxi;
+    [SerializeField] private LayerMask maskPuceron;
     [SerializeField] private float distanceAttaque = 1;
     [SerializeField] private Vector2 tailleBoite;
     [SerializeField] private Vector2 boiteDetectSol;
@@ -179,12 +180,12 @@ public class Fourmi : MonoBehaviour
     public void TraireLait()
     {
         Vector2 origine1 = origineTete.position;
-        int direction = regardeDroite ? 1 : -1;
-        Collider2D[] sucePuceron = Physics2D.OverlapCircleAll(origine1, tailleBoite.x, maskCoxi);
 
-        for (int i = 0; i < sucePuceron.Length; i++)
+        Collider2D[] sucePuceron = Physics2D.OverlapCircleAll(origine1, tailleBoite.x, maskPuceron);
+
+        foreach (var autre in sucePuceron)
         {
-            if (sucePuceron[i].TryGetComponent(out Puceron puceron))
+            if (autre.TryGetComponent(out Puceron puceron))
             {
                 puceron.RecolterLait();
             }
