@@ -216,13 +216,13 @@ public class Fourmi : MonoBehaviour
 
         Collider2D hitCoxi = Physics2D.OverlapCircle(origine1, porteeAttaque, maskCoxi);
 
-        for (int i = 0; i < hitCoxi.Length; i++)
-        {
-            if(hitCoxi[i].TryGetComponent(out Coxinelle coxi))
-            {
-                coxi.Mourir();
-            }
-        }
+        // for (int i = 0; i < hitCoxi.Length; i++)
+        // {
+        //     if(hitCoxi[i].TryGetComponent(out Coxinelle coxi))
+        //     {
+        //         coxi.Mourir();
+        //     }
+        // }
 
         /*if (hitCoxi.collider)
         {
