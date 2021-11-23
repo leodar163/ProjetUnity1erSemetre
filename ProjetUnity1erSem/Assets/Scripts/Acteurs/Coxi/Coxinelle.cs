@@ -14,6 +14,7 @@ public class Coxinelle : MonoBehaviour
     [SerializeField] private float tmpsPrTuerPuceron;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private SpriteRenderer sprRend;
+    [SerializeField] private Animator anim;
 
     private Vector2 pointSpawn;
     private Vector2 pointPuceron;
@@ -94,11 +95,16 @@ public class Coxinelle : MonoBehaviour
 
     public void Mourir()
     {
+        anim.SetTrigger("Meurt");
+    }
+
+    private void Detruire()
+    {
         if(alerteCoxi) Destroy(alerteCoxi.gameObject);
         if(puceronANiquer) puceronANiquer.estAttaque = false;
         Destroy(gameObject);
     }
-
+    
     private void SEnfuire()
     {
         if(alerteCoxi) Destroy(alerteCoxi.gameObject);
