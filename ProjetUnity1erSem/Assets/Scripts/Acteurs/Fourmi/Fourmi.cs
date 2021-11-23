@@ -11,7 +11,7 @@ public class Fourmi : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRendererAbdomene;
     [SerializeField] private Animator animator;
     [SerializeField] private Transform pied;
-    [SerializeField] private Transform origineDroite;
+    [SerializeField] private Transform origineTete;
     [SerializeField] private Transform origineGauche;
     
     [Header ("Collision")]
@@ -19,6 +19,8 @@ public class Fourmi : MonoBehaviour
     [SerializeField] private LayerMask maskCoxi;
     [SerializeField] private float distanceAttaque = 1;
     [SerializeField] private Vector2 tailleBoite;
+    [SerializeField] private Vector2 boiteDetectSol;
+   // [SerializeField] private Vector2 offsetBoite/*= new Vector2(origineTete.position.x, origineTete.position.y)*/;
     [SerializeField] private float porteeAttaque;
 
     [Header ("Commandes")]
@@ -31,7 +33,7 @@ public class Fourmi : MonoBehaviour
     [Header ("Variables")]
     [SerializeField] private float forceSaut = 50;
     [SerializeField] private float vitesse = 1.5f;
-    [SerializeField] private float distance = 1.5f;
+    //[SerializeField] private float distance = 1.5f;
     
     private bool regardeDroite;
     
@@ -39,13 +41,19 @@ public class Fourmi : MonoBehaviour
     [SerializeField] private bool auSol;
     [SerializeField] private bool auMur;
     [SerializeField] private bool enMouvement;
-    [SerializeField] private bool aPortee;
+    //[SerializeField] private bool aPortee;
 
 
     private void OnDrawGizmos()
     {
+        Vector2 direction1 = new Vector2(0.5f, 0);
+
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(origineDroite.position, tailleBoite);
+        Gizmos.DrawWireCube(origineTete.position, tailleBoite);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(pied.position, boiteDetectSol);
+        Gizmos.DrawWireCube(origineTete.position, direction1);
     }
 
     void Start()
@@ -68,7 +76,7 @@ public class Fourmi : MonoBehaviour
 
         if (Input.GetKeyDown(toucheInteraction))
         {
-            Interaction();
+            TraireLait();
         }
 
     }
@@ -114,7 +122,7 @@ public class Fourmi : MonoBehaviour
     {
         auMur = false;
 
-        Vector2 origine1 = origineDroite.position;
+        Vector2 origine1 = origineTete.position;
         Vector2 direction1 = new Vector2(0.5f, 0);
 
         Collider2D hit3 = Physics2D.OverlapBox(origine1, direction1, 0, detectionSol);
@@ -135,7 +143,7 @@ public class Fourmi : MonoBehaviour
             if (auSol)
             {
                 rb.AddForce(new Vector2(0, forceSaut));
-                enMouvement = true;
+                //enMouvement = true;
             }
         }
     }
@@ -146,45 +154,17 @@ public class Fourmi : MonoBehaviour
         Vector2 direction = Vector2.down;
         Vector2 decalage = new Vector2(0.13f, 0);
 
-        RaycastHit2D hit = Physics2D.Raycast(origine - decalage, direction, distance, detectionSol);
-        RaycastHit2D hit1 = Physics2D.Raycast(origine, direction, distance, detectionSol);
-        RaycastHit2D hit2 = Physics2D.Raycast(origine + decalage, direction, distance, detectionSol);
-        
-        if (hit || hit1 || hit2)
+        Collider2D hit = Physics2D.OverlapBox(origine, direction, 0, detectionSol);
+
+        if (hit)
         {
             auSol = true;
+            
         }
         else
         {
             auSol = false;
             
-        }
-
-        if(hit)
-        {
-            Debug.DrawRay(origine - decalage, direction * distance, Color.green);
-        }
-        else
-        {
-            Debug.DrawRay(origine - decalage, direction * distance, Color.red);
-        }
-
-        if(hit1)
-        {
-            Debug.DrawRay(origine, direction * distance, Color.green);
-        }
-        else
-        {
-            Debug.DrawRay(origine, direction * distance, Color.red);
-        }
-
-        if(hit2)
-        {
-            Debug.DrawRay(origine + decalage, direction * distance, Color.green);
-        }
-        else
-        {
-            Debug.DrawRay(origine + decalage, direction * distance, Color.red);
         }
 
     }
@@ -196,9 +176,19 @@ public class Fourmi : MonoBehaviour
     // Là elle agit
     #region Lait
     // Pour stocker et redonne le lait
-    void Interaction()
+    public void TraireLait()
     {
+        Vector2 origine1 = origineTete.position;
+        int direction = regardeDroite ? 1 : -1;
+        Collider2D[] sucePuceron = Physics2D.OverlapCircleAll(origine1, tailleBoite.x, maskCoxi);
 
+        for (int i = 0; i < sucePuceron.Length; i++)
+        {
+            if (sucePuceron[i].TryGetComponent(out Puceron puceron))
+            {
+                puceron.RecolterLait();
+            }
+        }
     }
     #endregion Lait
 
@@ -207,31 +197,22 @@ public class Fourmi : MonoBehaviour
 
     private void Attaque()
     {
-        aPortee = false;
-        Vector2 origine1 = origineDroite.position;
+       // aPortee = false;
+        Vector2 origine1 = origineTete.position;
         int direction = regardeDroite ? 1 : -1;
 
         Debug.DrawRay(origine1, Vector2.right * direction * distanceAttaque, Color.yellow);
         //RaycastHit2D hitCoxi = Physics2D.Raycast(origine1, Vector2.right * direction, distanceAttaque, maskCoxi);
 
-        Collider2D hitCoxi = Physics2D.OverlapCircle(origine1, porteeAttaque, maskCoxi);
+        Collider2D[] hitCoxi = Physics2D.OverlapCircleAll(origine1, tailleBoite.x, maskCoxi);
 
-        // for (int i = 0; i < hitCoxi.Length; i++)
-        // {
-        //     if(hitCoxi[i].TryGetComponent(out Coxinelle coxi))
-        //     {
-        //         coxi.Mourir();
-        //     }
-        // }
-
-        /*if (hitCoxi.collider)
+        for (int i = 0; i < hitCoxi.Length; i++)
         {
-            aPortee = true;
-            if (hitCoxi.collider.TryGetComponent(out Coxinelle coxinelle) && aPortee)
+            if(hitCoxi[i].TryGetComponent(out Coxinelle coxi))
             {
-                coxinelle.Mourir();  
+                coxi.Mourir();
             }
-        }*/
+        }
     }
 
     #endregion Attaque
@@ -253,9 +234,9 @@ public class Fourmi : MonoBehaviour
         spriteRenderer.flipX = regardeDroite;
         spriteRendererAbdomene.flipX = regardeDroite;
 
-       Vector3 nvellePosition = origineDroite.localPosition;
+       Vector3 nvellePosition = origineTete.localPosition;
         nvellePosition.x *= (regardeDroite && nvellePosition.x < 0) || (!regardeDroite && nvellePosition.x > 0) ? -1 :  1;
-        origineDroite.localPosition = nvellePosition;
+        origineTete.localPosition = nvellePosition;
     }
 
     #endregion
