@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4737064972823465123}
   - component: {fileID: 7344215104961085880}
   - component: {fileID: 2024539124516484433}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Lianes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7295162494115145335}
   - component: {fileID: 8333585652931335316}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpritePilone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 8410456915098338533}
   - component: {fileID: 6687273316294070200}
   m_Layer: 9
-  m_Name: MurInvisitble
+  m_Name: MurInvisible
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -251,7 +251,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4254445141438450634}
   - component: {fileID: 373292625581208835}
-  m_Layer: 0
+  - component: {fileID: 2732348751062749748}
+  m_Layer: 8
   m_Name: Scarabe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,6 +298,22 @@ MonoBehaviour:
   animScarab: {fileID: 2678395133425141614}
   animLianes: {fileID: 2024539124516484433}
   animHelices: {fileID: 6590760215546457340}
+--- !u!70 &2732348751062749748
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4254445141438450635}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.2394787, y: -0.12651812}
+  m_Size: {x: 1.2774097, y: 0.5847351}
+  m_Direction: 1
 --- !u!1 &4254445142182064455
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,7 +325,7 @@ GameObject:
   - component: {fileID: 4254445142182064454}
   - component: {fileID: 4254445142182064449}
   - component: {fileID: 2678395133425141614}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpriteScarab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -410,7 +427,7 @@ GameObject:
   - component: {fileID: 5340415594789627891}
   - component: {fileID: 6932728594595937081}
   - component: {fileID: 6590760215546457340}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Helice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -511,7 +528,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4590793347241609154}
   - component: {fileID: 2881465105300648525}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -592,7 +609,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4898586263884723468}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Roue
   m_TagString: Untagged
   m_Icon: {fileID: 0}

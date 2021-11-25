@@ -49,7 +49,7 @@ public class Scarabe : MonoBehaviour
 
     private void Courir()
     {
-        GameManager.Singleton.AjouterScore(nivoFatigue);
+        if (GameManager.Singleton) GameManager.Singleton.AjouterScore(nivoFatigue);
     }
 
     private IEnumerator CoolDownFatigue()
@@ -106,6 +106,6 @@ public class Scarabe : MonoBehaviour
     {
         roue.localEulerAngles = new Vector3(roue.localEulerAngles.x, roue.localEulerAngles.y,
             roue.localEulerAngles.z - vitesseRotationRoue * Time.deltaTime * (int) nivoFatigue);
-        Paralaxe.Singleton.VitesseDefilement = (int) nivoFatigue;
+      if(Paralaxe.Singleton)  Paralaxe.Singleton.VitesseDefilement = (int) nivoFatigue;
     }
 }

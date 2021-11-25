@@ -238,6 +238,10 @@ MonoBehaviour:
   pied: {fileID: 6206868394004712605}
   origineTete: {fileID: 582424817742740114}
   origineGauche: {fileID: 8167908484118319826}
+  etapesAbdomen:
+  - {fileID: -6522948268158561845, guid: 9c9a91ab129826645adadd3c63058521, type: 3}
+  - {fileID: 2462046578456800042, guid: 9c9a91ab129826645adadd3c63058521, type: 3}
+  - {fileID: -1189178046281199073, guid: 9c9a91ab129826645adadd3c63058521, type: 3}
   detectionSol:
     serializedVersion: 2
     m_Bits: 576
@@ -248,7 +252,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   distanceAttaque: 0.2
-  tailleBoite: {x: 0.22, y: 0.52}
+  boitePortee: {x: 0, y: 0}
   boiteDetectSol: {x: 0.82, y: 0.03}
   porteeAttaque: 1.04
   toucheDroite: 100
@@ -258,6 +262,8 @@ MonoBehaviour:
   toucheInteraction: 101
   forceSaut: 230
   vitesse: 2
+  tailleAbdomen: 0
+  stockageMaximum: 3
   auSol: 0
   auMur: 0
   enMouvement: 0

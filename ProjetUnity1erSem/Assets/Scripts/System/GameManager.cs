@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
         {
             Pause();
         }
-        if(ListePucerons.Singleton.LesPucerons.Count <= 0 && !estGameOver) GameOver(TypeMort.pluPuceron);
+        if(ListePucerons.Singleton && ListePucerons.Singleton.LesPucerons.Count <= 0 && !estGameOver) GameOver(TypeMort.pluPuceron);
     }
 
     public void GameOver(TypeMort typeMort)

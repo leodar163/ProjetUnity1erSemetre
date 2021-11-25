@@ -19,10 +19,10 @@ public class Puceron : MonoBehaviour
     [Tooltip("Le temps que met le lait à arriver à 100%")]
     [SerializeField] private float tempsSecretionLait;
 
-    private bool goutteBuvable => tailleGoute >= 1;
+    private bool goutteBuvable => tailleGoutte >= 1;
 
     public bool estAttaque;
-    private float tailleGoute;
+    private float tailleGoutte;
     
     private void Start()
     {
@@ -37,27 +37,20 @@ public class Puceron : MonoBehaviour
 
     private void SecreterLait()
     {
-        if (tailleGoute >= 1)
-        {
-            tailleGoute = 1;
-        }
-        else
-        {
-            tailleGoute += 1 / tempsSecretionLait * Time.deltaTime;
-        }
-        
+        tailleGoutte += 1 / tempsSecretionLait * Time.deltaTime;
+        tailleGoutte = Mathf.Clamp01(tailleGoutte);
     }
 
     private void GererEtapesLait()
     {
         if (etapesLait == null || etapesLait.Count == 0) return;
-        int index = (int)Mathf.Lerp(0, etapesLait.Count -1, tailleGoute);
+        int index = (int)Mathf.Lerp(0, etapesLait.Count -1, tailleGoutte);
         sprRend.sprite = etapesLait[index];
     }
     
     public void RecolterLait()
     {
-        if(goutteBuvable) tailleGoute = 0;
+        if(goutteBuvable) tailleGoutte = 0;
     }
 
     public void Mourir()

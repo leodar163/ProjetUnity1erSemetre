@@ -13,13 +13,14 @@ public class Fourmi : MonoBehaviour
     [SerializeField] private Transform pied;
     [SerializeField] private Transform origineTete;
     [SerializeField] private Transform origineGauche;
+    [SerializeField] private List<Sprite> etapesAbdomen;
     
     [Header ("Collision")]
     [SerializeField] private LayerMask detectionSol;
     [SerializeField] private LayerMask maskCoxi;
     [SerializeField] private LayerMask maskPuceron;
     [SerializeField] private float distanceAttaque = 1;
-    [SerializeField] private Vector2 tailleBoite;
+    [SerializeField] private Vector2 boitePortee;
     [SerializeField] private Vector2 boiteDetectSol;
    // [SerializeField] private Vector2 offsetBoite/*= new Vector2(origineTete.position.x, origineTete.position.y)*/;
     [SerializeField] private float porteeAttaque;
@@ -34,6 +35,8 @@ public class Fourmi : MonoBehaviour
     [Header ("Variables")]
     [SerializeField] private float forceSaut = 50;
     [SerializeField] private float vitesse = 1.5f;
+    [SerializeField] private int tailleAbdomen = 0;
+    [SerializeField] private int stockageMaximum = 3;
     //[SerializeField] private float distance = 1.5f;
     
     private bool regardeDroite;
@@ -42,15 +45,13 @@ public class Fourmi : MonoBehaviour
     [SerializeField] private bool auSol;
     [SerializeField] private bool auMur;
     [SerializeField] private bool enMouvement;
-    //[SerializeField] private bool aPortee;
-
 
     private void OnDrawGizmos()
     {
         Vector2 direction1 = new Vector2(0.5f, 0);
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(origineTete.position, tailleBoite);
+        Gizmos.DrawWireCube(origineTete.position, boitePortee);
 
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(pied.position, boiteDetectSol);
@@ -69,6 +70,7 @@ public class Fourmi : MonoBehaviour
         DetectSol();
         DetectMur();
         GererAnims();
+        GererEtapesAbdomen();
 
         if (Input.GetKeyDown(toucheAttaque))
         {
@@ -77,7 +79,7 @@ public class Fourmi : MonoBehaviour
 
         if (Input.GetKeyDown(toucheInteraction))
         {
-            TraireLait();
+            TraireDonnerLait();
         }
 
     }
@@ -177,17 +179,23 @@ public class Fourmi : MonoBehaviour
     // Là elle agit
     #region Lait
     // Pour stocker et redonne le lait
-    public void TraireLait()
+    public void TraireDonnerLait()
     {
         Vector2 origine1 = origineTete.position;
 
-        Collider2D[] sucePuceron = Physics2D.OverlapCircleAll(origine1, tailleBoite.x, maskPuceron);
+        Collider2D[] sucePuceron = Physics2D.OverlapCircleAll(origine1, boitePortee.x, maskPuceron);
 
         foreach (var autre in sucePuceron)
         {
-            if (autre.TryGetComponent(out Puceron puceron))
+            if (autre.TryGetComponent(out Puceron puceron) && tailleAbdomen < stockageMaximum)
             {
                 puceron.RecolterLait();
+                tailleAbdomen += 1;
+            }
+            else if (autre.TryGetComponent(out Scarabe scarabe) && tailleAbdomen > 0 && scarabe.nivoFatigue != Scarabe.Fatigue.enForme)
+            {
+                scarabe.Nourrir();
+                tailleAbdomen -= 1;
             }
         }
     }
@@ -198,14 +206,13 @@ public class Fourmi : MonoBehaviour
 
     private void Attaque()
     {
-       // aPortee = false;
         Vector2 origine1 = origineTete.position;
         int direction = regardeDroite ? 1 : -1;
 
         Debug.DrawRay(origine1, Vector2.right * direction * distanceAttaque, Color.yellow);
         //RaycastHit2D hitCoxi = Physics2D.Raycast(origine1, Vector2.right * direction, distanceAttaque, maskCoxi);
 
-        Collider2D[] hitCoxi = Physics2D.OverlapCircleAll(origine1, tailleBoite.x, maskCoxi);
+        Collider2D[] hitCoxi = Physics2D.OverlapCircleAll(origine1, boitePortee.x, maskCoxi);
 
         for (int i = 0; i < hitCoxi.Length; i++)
         {
@@ -219,7 +226,7 @@ public class Fourmi : MonoBehaviour
     #endregion Attaque
     #endregion Interaction
     
-    #region Animations
+    #region Animations/Graphismes
 
     private void GererAnims()
     {
@@ -238,6 +245,14 @@ public class Fourmi : MonoBehaviour
        Vector3 nvellePosition = origineTete.localPosition;
         nvellePosition.x *= (regardeDroite && nvellePosition.x < 0) || (!regardeDroite && nvellePosition.x > 0) ? -1 :  1;
         origineTete.localPosition = nvellePosition;
+
+    }
+
+    private void GererEtapesAbdomen()
+    {
+        if (etapesAbdomen == null || etapesAbdomen.Count == 0) return;
+        int index = (int)Mathf.Lerp(0, etapesAbdomen.Count - 1, (float)tailleAbdomen / stockageMaximum);
+        spriteRendererAbdomene.sprite = etapesAbdomen[index];
     }
 
     #endregion
