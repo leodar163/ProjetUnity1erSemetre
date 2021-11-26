@@ -35,15 +35,15 @@ public class GameOver : MonoBehaviour
         texteScore.text = "";
         if (estMeilleurScore)
         {
-            texteScore.text = "MEILLEUR DISTANCE !!!    ";
+            texteScore.text = "MEILLEURE DISTANCE !!!    ";
         }
 
         texteScore.text += "Distance Parcourue : " + score + "M";
 
         texteMort.text = typeMort switch
         {
-            GameManager.TypeMort.tomber => "Tu es tombe du bateau ! Les fourmis ne savent pas nager...",
-            GameManager.TypeMort.pluPuceron => "Tu n'as plus de puceron. Tu est condamne a errer sur les flots",
+            GameManager.TypeMort.tomber => "Tu es tombee du bateau ! Les fourmis ne savent pas nager...",
+            GameManager.TypeMort.pluPuceron => "Tu n'as plus de puceron. Tu es condamnee a errer sur les flots",
             _ => throw new ArgumentOutOfRangeException(nameof(typeMort), typeMort, null)
         };
     }

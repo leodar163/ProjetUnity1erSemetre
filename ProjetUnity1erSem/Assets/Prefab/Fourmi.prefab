@@ -259,11 +259,11 @@ MonoBehaviour:
   toucheGauche: 113
   toucheSaut: 32
   toucheAttaque: 13
-  toucheInteraction: 101
+  toucheInteraction: 109
   forceSaut: 230
   vitesse: 2
   tailleAbdomen: 0
-  stockageMaximum: 3
+  stockageMaximum: 4
   auSol: 0
   auMur: 0
   enMouvement: 0

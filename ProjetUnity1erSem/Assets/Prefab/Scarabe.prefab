@@ -292,7 +292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nivoFatigue: 2
-  tmpsFatigue: 10
+  tmpsFatigue: 30
   vitesseRotationRoue: 20
   roue: {fileID: 4898586263884723468}
   animScarab: {fileID: 2678395133425141614}
