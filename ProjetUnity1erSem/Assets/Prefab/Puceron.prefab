@@ -230,7 +230,7 @@ MonoBehaviour:
   - {fileID: -1676040803463626749, guid: e682ff255d42d6c46b5fe6597932a78b, type: 3}
   - {fileID: 1794585759797580174, guid: e682ff255d42d6c46b5fe6597932a78b, type: 3}
   - {fileID: -2145381326555886258, guid: e682ff255d42d6c46b5fe6597932a78b, type: 3}
-  tempsSecretionLait: 3
+  tempsSecretionLait: 5
   estAttaque: 0
 --- !u!70 &5550459187800757592
 CapsuleCollider2D:
