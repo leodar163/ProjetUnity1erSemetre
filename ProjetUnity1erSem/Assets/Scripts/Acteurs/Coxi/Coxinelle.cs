@@ -23,6 +23,8 @@ public class Coxinelle : MonoBehaviour
     private bool sEnfuit;
     private AlerteCoxi alerteCoxi;
 
+    public int coxiMorte;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -96,6 +98,7 @@ public class Coxinelle : MonoBehaviour
     public void Mourir()
     {
         anim.SetTrigger("Meurt");
+        coxiMorte += 1;
     }
 
     private void Detruire()

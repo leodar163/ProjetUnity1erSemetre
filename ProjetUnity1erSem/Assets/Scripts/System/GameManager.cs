@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI textScore;
+    [SerializeField] private TextMeshProUGUI textNbPuceron;
     private static GameManager cela;
 
     public static GameManager Singleton
@@ -22,16 +23,23 @@ public class GameManager : MonoBehaviour
     
     private float scoreDistance;
     public int ScoreDistance => (int)scoreDistance;
+    public int NbPuceron;
 
     [SerializeField] private float metreParSec = 0.1f;
     [SerializeField] private GameObject menuPause;
     private bool estEnPause;
     private bool estGameOver;
 
-    public void AjouterScore(Scarabe.Fatigue nivoFatigue)
+    private void AjouterScore()
     {
-        scoreDistance += metreParSec * (int)nivoFatigue * Time.deltaTime;
+        scoreDistance += metreParSec * (int)Scarabe.Singleton.nivoFatigue * Time.deltaTime;
         textScore.text = ScoreDistance + "M";
+    }
+
+    private void CompterPuceron()
+    {
+        NbPuceron = ListePucerons.Singleton.LesPucerons.Count;
+        textNbPuceron.text = NbPuceron + " Pucerons";
     }
 
     public enum  TypeMort
@@ -49,11 +57,16 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (Scarabe.Singleton) AjouterScore();
+        if (ListePucerons.Singleton)
+        {
+            CompterPuceron();
+            if (ListePucerons.Singleton.LesPucerons.Count <= 0 && !estGameOver) GameOver(TypeMort.pluPuceron);
+        }
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             Pause();
         }
-        if(ListePucerons.Singleton && ListePucerons.Singleton.LesPucerons.Count <= 0 && !estGameOver) GameOver(TypeMort.pluPuceron);
     }
 
     public void GameOver(TypeMort typeMort)

@@ -6,6 +6,16 @@ using UnityEngine.UI;
 
 public class Scarabe : MonoBehaviour
 {
+    private static Scarabe cela;
+    public static Scarabe Singleton
+    {
+        get
+        {
+            if (!cela) cela = FindObjectOfType<Scarabe>(true);
+            return cela;
+        }
+    }
+
     public enum Fatigue
     {
         enForme = 2,
@@ -43,13 +53,7 @@ public class Scarabe : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-           Courir();
            FaireRoulerRoue();
-    }
-
-    private void Courir()
-    {
-        if (GameManager.Singleton) GameManager.Singleton.AjouterScore(nivoFatigue);
     }
 
     private IEnumerator CoolDownFatigue()

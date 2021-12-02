@@ -252,18 +252,18 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   distanceAttaque: 0.2
-  boitePortee: {x: 0, y: 0}
+  boitePortee: {x: 0.4, y: 0}
   boiteDetectSol: {x: 0.82, y: 0.03}
-  porteeAttaque: 1.04
+  boiteDetectMur: {x: 0.16, y: 0.33}
   toucheDroite: 100
   toucheGauche: 113
   toucheSaut: 32
   toucheAttaque: 13
   toucheInteraction: 109
   forceSaut: 230
-  vitesse: 2
+  vitesse: 2.2
   tailleAbdomen: 0
-  stockageMaximum: 4
+  stockageMaximum: 3
   auSol: 0
   auMur: 0
   enMouvement: 0

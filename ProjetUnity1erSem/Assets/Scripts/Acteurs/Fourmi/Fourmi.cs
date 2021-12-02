@@ -22,8 +22,7 @@ public class Fourmi : MonoBehaviour
     [SerializeField] private float distanceAttaque = 1;
     [SerializeField] private Vector2 boitePortee;
     [SerializeField] private Vector2 boiteDetectSol;
-   // [SerializeField] private Vector2 offsetBoite/*= new Vector2(origineTete.position.x, origineTete.position.y)*/;
-    [SerializeField] private float porteeAttaque;
+    [SerializeField] private Vector2 boiteDetectMur;
 
     [Header ("Commandes")]
     [SerializeField] private KeyCode toucheDroite;
@@ -48,19 +47,14 @@ public class Fourmi : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Vector2 direction1 = new Vector2(0.5f, 0);
+        Vector2 direction1 = new Vector2(0.3f, 0.5f);
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(origineTete.position, boitePortee);
+        Gizmos.DrawWireSphere(origineTete.position, boitePortee.x);
 
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(pied.position, boiteDetectSol);
-        Gizmos.DrawWireCube(origineTete.position, direction1);
-    }
-
-    void Start()
-    {
-        
+        Gizmos.DrawWireCube(origineTete.position, boiteDetectMur);
     }
 
     void Update()
@@ -94,10 +88,10 @@ public class Fourmi : MonoBehaviour
             
         if (Input.GetKey(toucheDroite))
         {
-            if(!auMur)
+            enMouvement = true;
+            if (!auMur)
             {
                 rb.velocity = new Vector2(vitesse, rb.velocity.y);
-                enMouvement = true;
             }
             regardeDroite = true;
            
@@ -105,10 +99,10 @@ public class Fourmi : MonoBehaviour
 
         if (Input.GetKey(toucheGauche))
         {
+            enMouvement = true;
             if (!auMur)
             {
                 rb.velocity = new Vector2(-vitesse, rb.velocity.y);
-                enMouvement = true;
             }
             regardeDroite = false;
             
@@ -128,7 +122,7 @@ public class Fourmi : MonoBehaviour
         Vector2 origine1 = origineTete.position;
         Vector2 direction1 = new Vector2(0.5f, 0);
 
-        Collider2D hit3 = Physics2D.OverlapBox(origine1, direction1, 0, detectionSol);
+        Collider2D hit3 = Physics2D.OverlapBox(origine1, boiteDetectMur, 0, detectionSol);
 
         if (hit3 && enMouvement)
         {
@@ -157,7 +151,7 @@ public class Fourmi : MonoBehaviour
         Vector2 direction = Vector2.down;
         Vector2 decalage = new Vector2(0.13f, 0);
 
-        Collider2D hit = Physics2D.OverlapBox(origine, direction, 0, detectionSol);
+        Collider2D hit = Physics2D.OverlapBox(origine, boiteDetectSol, 0, detectionSol);
 
         if (hit)
         {
@@ -189,8 +183,12 @@ public class Fourmi : MonoBehaviour
         {
             if (autre.TryGetComponent(out Puceron puceron) && tailleAbdomen < stockageMaximum)
             {
-                puceron.RecolterLait();
-                tailleAbdomen += 1;
+                if(puceron.goutteBuvable)
+                {
+                    puceron.RecolterLait();
+                    tailleAbdomen += 1;
+                }
+                
             }
             else if (autre.TryGetComponent(out Scarabe scarabe) && tailleAbdomen > 0 && scarabe.nivoFatigue != Scarabe.Fatigue.enForme)
             {

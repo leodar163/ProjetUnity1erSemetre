@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -19,14 +18,14 @@ public class Puceron : MonoBehaviour
     [Tooltip("Le temps que met le lait à arriver à 100%")]
     [SerializeField] private float tempsSecretionLait;
 
-    private bool goutteBuvable => tailleGoutte >= 1;
+    public bool goutteBuvable => tailleGoutte >= 1;
 
     public bool estAttaque;
     private float tailleGoutte;
     
     private void Start()
     {
-
+        StartCoroutine(Delai());
     }
 
     private void Update()
@@ -35,6 +34,10 @@ public class Puceron : MonoBehaviour
         GererEtapesLait();
     }
 
+    private IEnumerator Delai()
+    {
+        yield return new WaitForSeconds(Random.Range(5, 20));
+    }
     private void SecreterLait()
     {
         tailleGoutte += 1 / tempsSecretionLait * Time.deltaTime;
