@@ -184,9 +184,9 @@ MonoBehaviour:
 
     Espace pour sauter
 
-    XXX pour attaquer
+    Entrer pour attaquer
 
-    XXX
+    M
     pour avaler/recracher le lait de puceron'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d2f7b5a87d791b04bac862f1a216955d, type: 2}
