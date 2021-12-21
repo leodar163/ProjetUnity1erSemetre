@@ -117,7 +117,7 @@ public class Coxinelle : MonoBehaviour
 
         if (Vector2.Distance(pointSpawn, transform.position) <= 0.05f)
         {
-            Mourir();
+            Detruire();
         }
     }
 }
