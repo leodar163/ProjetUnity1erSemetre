@@ -44,5 +44,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textScore: {fileID: 0}
+  textNbPuceron: {fileID: 0}
+  textCoxiTuees: {fileID: 0}
+  NbPuceron: 0
+  statCoxi: 0
   metreParSec: 0.3
   menuPause: {fileID: 0}

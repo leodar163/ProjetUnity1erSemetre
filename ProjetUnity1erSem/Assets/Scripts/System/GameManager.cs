@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
         {
             Pause();
         }
+
     }
 
     public void GameOver(TypeMort typeMort)
@@ -78,7 +79,7 @@ public class GameManager : MonoBehaviour
         bool estMeilleurScore = score == PlayerPrefs.GetInt("MeilleurScore");
         global::GameOver.Singleton.AfficherGameOver(score,estMeilleurScore,typeMort);
         estGameOver = true;
-    }
+         }
 
     public void Pause()
     {

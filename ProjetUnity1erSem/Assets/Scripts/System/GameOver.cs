@@ -22,6 +22,7 @@ public class GameOver : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI texteScore;
     [SerializeField] private TextMeshProUGUI texteMort;
+    [SerializeField] private TextMeshProUGUI textCoxiTuees;
     [SerializeField] private GameObject Menu;
 
     private void Awake()
@@ -29,6 +30,11 @@ public class GameOver : MonoBehaviour
         Menu.SetActive(false);
     }
 
+    private void CompterCoxiTuees()
+    {
+        int statCoxi = Coxinelle.coxiMorte;
+        textCoxiTuees.text = statCoxi + " Coccinelles tuees";
+    }
     public void AfficherGameOver(int score, bool estMeilleurScore, GameManager.TypeMort typeMort)
     {
         Menu.SetActive(true);
@@ -46,5 +52,6 @@ public class GameOver : MonoBehaviour
             GameManager.TypeMort.pluPuceron => "Tu n'as plus de puceron. Tu es condamnee a errer sur les flots",
             _ => throw new ArgumentOutOfRangeException(nameof(typeMort), typeMort, null)
         };
+        CompterCoxiTuees();
     }
 }
